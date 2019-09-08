@@ -1,0 +1,52 @@
+Humam Rashid
+CISC 7120X, Fall 2019.
+
+=== PART 1 ===
+
+1. The are many different programming languages because of several reasons:
+    a. Many languages evolved from older ones as new programming methodologies,
+    syntax, types, etc. were developed.
+    b. As new paradigms (e.g., functional, logic, constraint, aspect) and
+    application domains (e.g., system administration, AI, web-development) were
+    discovered, newer languages were designed around their concepts to ease
+    software development.
+    b. Personal preference also played a significant role from early on as
+    designers preferred certain features that were not available in existing
+    languages and some were just designed for fun, for education,
+    proof-of-concept and so on.
+
+2. Among the things that make programming languages successful are:
+    a. Expressiveness: essentially means being able to write desired algorithms,
+    etc. in a relatively easy or intuitive manner.
+    b. Availability of implementations: some programming languages have official
+    implementations while others have standards/definitions which different
+    implementations target their compilers or interpreters toward. Availability
+    of good, well-supported implementations is often taken as a key indicator of
+    a language's reliability in general.
+    c. Efficiency: code in the language needs to run fast enough to get work
+    done "quickly." What counts as quick enough can and very often does depend
+    on the specific implementation and application domain.
+    d. Productivity: programming languages allowing for reduced development time
+    and developer ease are often chosen over those with steep development or
+    learning time, especially in industry.
+    e. Industrial support/sponsorhip: languages developed directly by or for
+    which development is funded by coroporations tend to see wide-spread use,
+    often starting with internal use by the sponsoring entity.
+
+3. Reasons for studying programming languages include:
+    a. Understanding concepts, features and problem-solving techniques at a
+    higher-level. For example, different languages often allow for different
+    levels of abstration or certain built-in data types/structures which allow
+    for reasoning about problem solutions in a more intuitive way.
+    b. Knowing the different methodologies behind different languages or the
+    types of application they are particularly strong in allows for the
+    developer to choose "the right tool for the job."
+    c. Having knowledge of different languages allows for faster learning of new
+    langugages in general in a similar fashion to natural languages.
+    d. Even if one does not switch to a new language for a task, knowing
+    different features or techniques used commonly in other languages allow for
+    the possibility to use such techniques where applicable without significant
+    shifts in production time.
+
+4. It is important to study the implementation of programming languages to:
+    a.
