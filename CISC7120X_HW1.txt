@@ -49,4 +49,21 @@ CISC 7120X, Fall 2019.
     shifts in production time.
 
 4. It is important to study the implementation of programming languages to:
-    a.
+    a. Understand how languages are specified and implmented. This also helps in
+    learning about different paradigms and their approaches in software
+    methodology. Another benefit is that many of the techniques used in design
+    and implementation have uses in other areas of computer science research and
+    practical software development.
+    b. Understanding obscure phenomena. Studying implementation details allows
+    us to better prepare and work out problems when unexpected or obscure issues
+    show up during development.
+    c. Studying language design and implementation allows us to better develop
+    or follow well-tested methodologies, style conventions and utilize
+    techniques that make programs in the specific language (or other ones) more
+    efficient.
+    d. Studying design and implementation of programming languages is also the
+    primary means of knowing how to design and implement your own language.
+    While most people do not need to do this for general-purpose programming, it
+    is more often useful in domain-specific tasks.
+
+5.
