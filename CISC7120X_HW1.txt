@@ -29,28 +29,28 @@ CISC 7120X, Fall 2019.
     d. Productivity: programming languages allowing for reduced development time
     and developer ease are often chosen over those with steep development or
     learning time, especially in industry.
-    e. Industrial support/sponsorhip: languages developed directly by or for
-    which development is funded by coroporations tend to see wide-spread use,
+    e. Industrial support/sponsorship: languages developed directly by or for
+    which development is funded by corporations tend to see wide-spread use,
     often starting with internal use by the sponsoring entity.
 
 3. Reasons for studying programming languages include:
     a. Understanding concepts, features and problem-solving techniques at a
     higher-level. For example, different languages often allow for different
-    levels of abstration or certain built-in data types/structures which allow
+    levels of abstraction or certain built-in data types/structures which allow
     for reasoning about problem solutions in a more intuitive way.
     b. Knowing the different methodologies behind different languages or the
     types of application they are particularly strong in allows for the
     developer to choose "the right tool for the job."
     c. Having knowledge of different languages allows for faster learning of new
-    langugages in general in a similar fashion to natural languages.
+    languages in general in a similar fashion to natural languages.
     d. Even if one does not switch to a new language for a task, knowing
     different features or techniques used commonly in other languages allow for
     the possibility to use such techniques where applicable without significant
     shifts in production time.
 
 4. It is important to study the implementation of programming languages to:
-    a. Understand how languages are specified and implmented. This also helps in
-    learning about different paradigms and their approaches in software
+    a. Understand how languages are specified and implemented. This also helps
+    in learning about different paradigms and their approaches in software
     methodology. Another benefit is that many of the techniques used in design
     and implementation have uses in other areas of computer science research and
     practical software development.
@@ -71,3 +71,18 @@ CISC 7120X, Fall 2019.
     b. Object-Oriented: Smalltalk, Ruby.
     c. Logic: Prolog, Picat.
     d. Functional: Common Lisp, Standard ML.
+
+6. Features common to object-oriented programming languages include:
+    a. Abstract data types.
+    b. Inheritance and overriding mechanisms.
+    c. Polymorphism.
+    d. Dynamic binding.
+
+7. Features common to functional programming languages include:
+    a. Single assignment variables and no side-effects (at least in pure
+    functional languages).
+    b. Recursion (instead of iteration).
+    c. Rule-based function definitions and pattern matching.
+    d. Higher-order functions.
+    e. Lazy evaluation.
+    f. Meta-programming.
