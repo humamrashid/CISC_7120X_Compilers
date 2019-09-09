@@ -86,3 +86,10 @@ CISC 7120X, Fall 2019.
     d. Higher-order functions.
     e. Lazy evaluation.
     f. Meta-programming.
+
+8. Features common to logic programming languages include:
+    a. Logic variables.
+    b. Recursion (instead of iteration).
+    c. Unification.
+    d. Backtracking and non-determinism.
+    e. Meta-programming.
