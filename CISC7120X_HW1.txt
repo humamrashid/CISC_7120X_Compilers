@@ -93,3 +93,9 @@ CISC 7120X, Fall 2019.
     c. Unification.
     d. Backtracking and non-determinism.
     e. Meta-programming.
+
+=== PART 2 ===
+
+=== PART 3 ===
+
+=== PART 4 ===
