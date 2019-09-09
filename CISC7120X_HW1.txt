@@ -66,4 +66,8 @@ CISC 7120X, Fall 2019.
     While most people do not need to do this for general-purpose programming, it
     is more often useful in domain-specific tasks.
 
-5.
+5. Two languages per paradigm:
+    a. Procedural: ALGOL 60, C.
+    b. Object-Oriented: Smalltalk, Ruby.
+    c. Logic: Prolog, Picat.
+    d. Functional: Common Lisp, Standard ML.
