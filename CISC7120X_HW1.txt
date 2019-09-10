@@ -134,6 +134,13 @@ int main(void)
 
 === PART 3 ===
 
+ALSU book exercises:
+
+1.1.1) A compiler essentially translates programs from one language into another
+and the final translation is what is utilized by the user or run on a machine.
+Interpreters on the other hand go through a program statement by statement,
+executing each one independently in sequence.
+
 === PART 4 ===
 
 # EOF.
