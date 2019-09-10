@@ -134,9 +134,9 @@ int main(void)
 
 === PART 3 ===
 
-ALSU book exercises:
+ALSU book exercises.
 
-1. Exercises 1.1.1 on page 3
+1. Exercises 1.1.1 on page 3:
 
     1.1.1) A compiler essentially translates programs from one language into
     another and the final translation is what is utilized by the user or run on
@@ -155,6 +155,39 @@ ALSU book exercises:
     write a separate machine language compiler for the original source language
     and instead being able to use a C compiler to turn the translated C program
     to a native binary.
+
+    1.1.5) An assembler is a language translator that takes input in assembly
+    language and produces output in machine language. It essentially takes the
+    mnemonics and operations/addresses described in assembly and translates them
+    into binary arrangements specific to a processor architecture.
+
+2. Exercise 1.3.3 on page 14:
+
+    1.3.1.1) C -> imperative, von Neumann, third-generation.
+
+    1.3.1.2) C++ -> imperative, von Neumann, object-oriented, functional,
+    third-generation.
+
+    1.3.1.3) Cobol -> imperative, von Neumann, object-oriented,
+    third-generation.
+
+    1.3.1.4) Fortran -> imperative, von Neumann, object-oriented,
+    third-generation.
+
+    1.3.1.5) Java -> imperative, von Neumann, object-oriented, third-generation.
+
+    1.3.1.6) Lisp -> declarative, object-oriented, functional, third-generation.
+
+    1.3.1.7) ML -> declarative, object-oriented, functional, third-generation.
+
+    1.3.1.8) Perl -> imperative, von Neumann, object-oriented, functional,
+    third-generation, scripting.
+
+    1.3.1.9) Python -> imperative, von Neumann, object-oriented, functional,
+    third-generation, scripting.
+
+    1.3.1.10) VB -> imperative, von Neumann, object-oriented, third-generation,
+    scripting.
 
 === PART 4 ===
 
