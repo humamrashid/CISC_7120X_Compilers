@@ -3,10 +3,12 @@
 # An implementation of Trabb Pardo-Knuth algorithm in Ruby.
 
 S = []
-11.times { S.push(gets.chomp.to_i) }
+puts("Enter 11 numbers: ")
+11.times { S.push(gets.to_f) }
+puts("Result: ")
 S.reverse.each do |e|
-  val = Math.sqrt(e.abs) + (5 * e)
-  puts (val > 500) ? "#{e}: caused overflow!" : val
+  val = ->(x) { Math.sqrt(x.abs) + (5 * x) }.call(e)
+  puts (val > 500) ? "f(#{e}): caused overflow!" : "f(#{e}) = #{val}"
 end
 
 # EOF.
