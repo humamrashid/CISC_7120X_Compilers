@@ -136,10 +136,25 @@ int main(void)
 
 ALSU book exercises:
 
-1.1.1) A compiler essentially translates programs from one language into another
-and the final translation is what is utilized by the user or run on a machine.
-Interpreters on the other hand go through a program statement by statement,
-executing each one independently in sequence.
+1. Exercises 1.1.1 on page 3
+
+    1.1.1) A compiler essentially translates programs from one language into
+    another and the final translation is what is utilized by the user or run on
+    a machine. Interpreters on the other hand go through a program statement by
+    statement, executing each one independently and in sequence.
+
+    1.1.2) a. Compiled programs are generally significantly faster than
+           interpreted ones.
+           b. Interpreted programs often offer better diagnostic messages which
+           makes debugging easier.
+
+    1.1.3) Assembly language is easier for compilers to produce while also being
+    easier for programmers to read and debug.
+
+    1.1.4) Using C as a target language offers the advantage of not needing to
+    write a separate machine language compiler for the original source language
+    and instead being able to use a C compiler to turn the translated C program
+    to a native binary.
 
 === PART 4 ===
 
