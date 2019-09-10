@@ -96,6 +96,19 @@ CISC 7120X, Fall 2019.
 
 === PART 2 ===
 
+1. Ruby implementation of Trabb Pardo-Knuth algorithm:
+
+S = []
+11.times { S.push(gets.chomp.to_i) }
+S.reverse.each do |e|
+  val = Math.sqrt(e.abs) + (5 * e)
+  puts (val > 500) ? "#{e}: caused overflow!" : val
+end
+
+2. Standard ML implementation of Trabb Pardo-Knuth algorithm:
+
 === PART 3 ===
 
 === PART 4 ===
+
+# EOF.
