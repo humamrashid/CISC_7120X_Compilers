@@ -220,8 +220,32 @@ ALSU book exercises.
     means that the scope is determined by time of procedure invocation rather
     than position in the code.
 
-3. Static binding: Binding that can be decided on my the compiler at compile
+3. Static binding: Binding that can be decided on by the compiler at compile
     time is said to be static binding.
 
+3. Dynamic binding: Binding that cannot be decided on by the compiler but must
+    determined at run-time is said to be dynamic binding.
+
+4. Call-by-value: In languages that use this policy, when a procedure is called
+    with parameters, the actual parameter is evaluated (in the case of
+    expressions) or copied (in the case of variables) and this value is placed
+    in the location of the corresponding formal parameter of the procedure. This
+    policy essentially has the effect of making any computations involving the
+    formal parameters in the procedure local to it. Some languages mix this
+    policy with other ones or have allow some way to bypass it (e.g. pointers in
+    C).
+
+5. Call-by-reference: In languages that use this policy, when a procedure is
+    called with parameters, the addresses of the actual parameters are passed to
+    the procedure as values for the corresponding formal parameters. Thus, any
+    changes in the value of the formal parameter also takes affect on the actual
+    parameter. This is the case for variables; for expressions however, a they
+    are evaluated and the values are placed in a new location, therefore changes
+    made to them do not affect any data in the calling unit. Call-by-reference
+    is often used either as the solitary policy or for certain cases in other
+    call-by-value languages. For example, when the copying the value of the
+    actual parameter is judged to be too expensive (e.g., for large or aggregate
+    data structures such as arrays), call-by-reference is utilized for purposes
+    of efficiency.
 
 # EOF.
