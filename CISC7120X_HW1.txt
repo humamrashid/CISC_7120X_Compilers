@@ -188,6 +188,40 @@ ALSU book exercises.
 
     1.6.2) w = 9, x = 7, y = 13, z = 11.
 
+    1.6.3) Block # -> declaration for block (scope).
+    
+    Block B1 -> w (B1 - B3 - B4), x (B1 - B2 - B4), y (B1 - B5), z (B1 -
+    B2 - B5).
+
+    Block B2 -> x (B2 - B3), z (B2).
+
+    Block B3 -> w (B3), x (B3).
+
+    Block B4 -> w (B4), x (B4).
+
+    Block B5 -> y (B5), z (B5).
+
+    1.6.4) The code prints:
+
+    3
+
+    2
+
 === PART 4 ===
+
+1. Static scope: A language is said to have static scope (also known as lexical
+    scope if it is possible to determine the scope of declarations by only
+    looking at the program. Meaning that the location of the declaration
+    determines its scope (e.g., the block it is declared under in C-like
+    languages).
+
+2. Dynamic scope: A language in which scope of declarations cannot be determined
+    by only looking at the program is said to have dynamic scope. Usually this
+    means that the scope is determined by time of procedure invocation rather
+    than position in the code.
+
+3. Static binding: Binding that can be decided on my the compiler at compile
+    time is said to be static binding.
+
 
 # EOF.
