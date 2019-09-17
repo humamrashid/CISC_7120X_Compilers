@@ -161,10 +161,10 @@ ALSU book exercises.
     1.3.1.2) C++ -> imperative, von Neumann, object-oriented, functional,
     third-generation.
 
-    1.3.1.3) Cobol -> imperative, von Neumann, object-oriented,
+    1.3.1.3) COBOL -> imperative, von Neumann, object-oriented,
     third-generation.
 
-    1.3.1.4) Fortran -> imperative, von Neumann, object-oriented,
+    1.3.1.4) FORTRAN -> imperative, von Neumann, object-oriented,
     third-generation.
 
     1.3.1.5) Java -> imperative, von Neumann, object-oriented, third-generation.
@@ -223,10 +223,10 @@ ALSU book exercises.
 3. Static binding: Binding that can be decided on by the compiler at compile
     time is said to be static binding.
 
-3. Dynamic binding: Binding that cannot be decided on by the compiler but must
+4. Dynamic binding: Binding that cannot be decided on by the compiler but must
     determined at run-time is said to be dynamic binding.
 
-4. Call-by-value: In languages that use this policy, when a procedure is called
+5. Call-by-value: In languages that use this policy, when a procedure is called
     with parameters, the actual parameter is evaluated (in the case of
     expressions) or copied (in the case of variables) and this value is placed
     in the location of the corresponding formal parameter of the procedure. This
@@ -235,17 +235,23 @@ ALSU book exercises.
     policy with other ones or have allow some way to bypass it (e.g. pointers in
     C).
 
-5. Call-by-reference: In languages that use this policy, when a procedure is
+6. Call-by-reference: In languages that use this policy, when a procedure is
     called with parameters, the addresses of the actual parameters are passed to
     the procedure as values for the corresponding formal parameters. Thus, any
     changes in the value of the formal parameter also takes affect on the actual
-    parameter. This is the case for variables; for expressions however, a they
-    are evaluated and the values are placed in a new location, therefore changes
+    parameter. This is the case for variables; for expressions however, they are
+    evaluated and the values are placed in a new location, therefore changes
     made to them do not affect any data in the calling unit. Call-by-reference
-    is often used either as the solitary policy or for certain cases in other
-    call-by-value languages. For example, when the copying the value of the
-    actual parameter is judged to be too expensive (e.g., for large or aggregate
-    data structures such as arrays), call-by-reference is utilized for purposes
-    of efficiency.
+    is often used either as the solitary policy or for certain cases in
+    otherwise call-by-value languages. For example, when the copying the value
+    of the actual parameter is judged to be too expensive (e.g., for large or
+    aggregate data structures such as arrays), call-by-reference is utilized for
+    purposes of efficiency.
+
+7. Call-by-name: In languages that use this policy, the called procedure acts as
+    if the actual parameter is literally substituted for the formal parameter.
+    This essentially treats the formal parameter as a macro for the actual one
+    but with a new name in the called procedure. Examples are found in the C
+    preprocessor and the language ALGOL 60.
 
 # EOF.
