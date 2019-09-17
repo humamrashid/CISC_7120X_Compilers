@@ -36,14 +36,14 @@ Then, C strings without allowing \n and unescaped backslash and double quotes is
 Let S = $(*)*
 Let N = [1-9]
 Let D = [0-9]
-Let F = .DD
-Let T = ,DDD
+Let F = (.DD)
+Let T = (,DDD)
 Let M = (N|ND|NDD)
 
 Then, the regular expression for financial quantities in American notation as
 described is:
 
-S(0|MT*)(F)?
+S(0|MT*)F?
 
 Written out, the above is the same as:
 
