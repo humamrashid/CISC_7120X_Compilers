@@ -18,7 +18,7 @@ CISC 7120X, Fall 2019.
 2. (a|b)*a(a|b)*a(a|b)*     = {w | w has at least two 'a's}.
 3. b*(ab*a)*b*              = {w | w has an even number of 'a's}.
 4. (a?b+)*a?                = {w | w does not have two 'a's in a row}.
-5. ((ab)?(a|b))*            = {w | w does not end with the substring 'ab'}.
+5. b*|((b|ab)?(a|ba|bb))*   = {w | w does not end with the substring 'ab'}.
 
 3. Regular expression for C strings. Assuming alphabet is all ASCII printable
 characters.
