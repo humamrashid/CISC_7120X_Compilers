@@ -24,16 +24,19 @@ CISC 7120X, Fall 2019.
 characters.
 
 Let A = [ASCII printable characters except \ and "]
+Let B = \\
+Let C = \"
+Let N = [^n] = Sigma - n
 
 Then, C strings without allowing \n and unescaped backslash and double quotes is:
 
-"(A|\\|\"|\?[^n])*"
+"(A|B|C|\?N)*"
 
 4. Assuming the alphabet is:
 
 {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, $, period, comma, asterisk}.
 
-Let S = $(*)*
+Let a = asterisk
 Let N = [1-9]
 Let D = [0-9]
 Let F = (.DD)
@@ -43,11 +46,11 @@ Let M = (N|ND|NDD)
 Then, the regular expression for financial quantities in American notation as
 described is:
 
-S(0|MT*)F?
+$a*(0|MT*)F?
 
 Written out, the above is the same as:
 
-$(*)*(0|(N|ND|NDD)(,[0-9][0-9][0-9])*)(.[0-9][0-9])?
+$('*')*(0|([1-9]|[1-9][0-9]|[1-9][0-9][0-9])(,[0-9][0-9][0-9])*)(.[0-9][0-9])?
 
 5. Need more time to do.
 
