@@ -12,10 +12,12 @@ compile but 'y = 2;' would do so.
 
     a. The CFG for strings of 0's and 1's with an equal number of 0's and 1's
     is:
+
         S -> 0S1S | 1S0S | e
 
     b. The CFG for strings of 0's and 1's with an unequal number of 0's and 1's
     is:
+
         S -> U | V
         T -> 0T1T | 1T0T | e
         U -> T0U | T0T | U0T
@@ -24,6 +26,10 @@ compile but 'y = 2;' would do so.
 3. S = {a, b}. Let e = epsilon.
 
     a. The CFG for {a^(i)b^(j) | i, j >= 0} is:
+
+        S -> TU
+        T -> aT | e
+        U -> Ub | e
     
     b. The CFG for {a^(i)b^(j)a^(k) | i + j = k, k >= 0} is:
 
