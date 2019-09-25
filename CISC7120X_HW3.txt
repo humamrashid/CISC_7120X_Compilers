@@ -23,7 +23,7 @@ compile but 'y = 2;' would do so.
         U -> T0U | T0T | U0T
         V -> T1V | T1T | V1T
 
-3. S = {a, b}. Let e = epsilon.
+3. Let e = epsilon.
 
     a. The CFG for {a^(i)b^(j) | i, j >= 0} is:
 
@@ -32,5 +32,10 @@ compile but 'y = 2;' would do so.
         U -> Ub | e
     
     b. The CFG for {a^(i)b^(j)a^(k) | i + j = k, k >= 0} is:
+
+        S -> TU
+        T -> aTV | aTU | e
+        U -> bUV | e
+        V -> a
 
 4.
