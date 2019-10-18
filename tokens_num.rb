@@ -13,7 +13,7 @@ def tokens_num(string)
   ]
 end
 
-abort "Usage: #{$PROGRAM_NAME} <s1...sN>" unless ARGV.length >= 1
-puts tokens_num(ARGV.join(" ")).to_s
+print "Enter a string: "
+puts tokens_num(gets.chomp).to_s
 
 # EOF.
