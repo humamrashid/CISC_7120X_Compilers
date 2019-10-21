@@ -54,12 +54,12 @@ class Lexer
       token.type = Token::L_PAREN
     when /\A\)/
       token.type = Token::R_PAREN
-    when /\A([a-z]|[A-Z]|_)\w*/
+    when /\A([a-z]|[A-Z]|_)\w*\b/
       token.type = Token::IDENTIFIER
-    when /\A0\Z|\A[1-9]\d*/
+    when /\A0\Z|\A[1-9]\d*\b/
       token.type = Token::INT_LITERAL
     end
-    raise 'ignoring unknown token' if token.unknown?
+    raise "unknown token #{@input}" if token.unknown?
     @input = $'
     token
   end
