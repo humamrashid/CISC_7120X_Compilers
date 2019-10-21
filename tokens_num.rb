@@ -2,14 +2,24 @@
 #
 # Humam Rashid
 # Fall 2019, CISC 7120X
-# Answer to question 3, mid-term exam. This implementation
-# uses regular expressions to determine token count.
+# Answer to question 3, mid-term exam.
+# This particular implementation is done in a 'functional'
+# way without any side-effects.
 
 def tokens_num(string)
   [
     string.split.grep(/\A([a-z]|[A-Z]|_)\w*\Z/).length,
     string.split.grep(/\A0\Z|\A[1-9]\d*\Z/).length,
     string.split.grep_v(/(\A0\Z|\A[1-9]\d*\Z)|(\A([a-z]|[A-Z]|_)\w*\Z)/).length
+  ]
+end
+
+def tokens_num1(string)
+  s = string.split
+  [
+    s.grep(/\A([a-z]|[A-Z]|_)\w*\Z/).length,
+    s.grep(/\A0\Z|\A[1-9]\d*\Z/).length,
+    s.grep_v(/(\A0\Z|\A[1-9]\d*\Z)|(\A([a-z]|[A-Z]|_)\w*\Z)/).length
   ]
 end
 
