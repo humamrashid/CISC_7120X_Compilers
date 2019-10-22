@@ -5,6 +5,8 @@
  *
  * Based primarily on:
  * 1. lexer design in chapter 1 of "Compielr Design in C" by Holub (1990).
+ *
+ * This implementation uses a lookahead.
  */
 #include <stdio.h>
 #include <ctype.h>

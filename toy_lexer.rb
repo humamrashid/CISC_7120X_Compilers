@@ -3,7 +3,8 @@
 # Humam Rashid
 # CISC 7120X, Fall 2019.
 #
-# This file includes the Token and Lexer classes.
+# This file includes the Token and Lexer classes. This lexer
+# uses backtracking.
 
 class Token
   attr_accessor :type
@@ -33,8 +34,15 @@ end
 class Lexer
   def initialize(input)
     @input = input
+    @ret_prev_token = false
   end
-  def lex()
+
+  def next_token()
+    if @ret_prev_token
+      @ret_prev_token = false
+      return @prev_token
+    end
+
     token = Token.new
     @input.lstrip!
     case @input
@@ -61,6 +69,14 @@ class Lexer
     end
     raise "unknown token #{@input}" if token.unknown?
     @input = $'
+
+    @prev_token = token
     token
   end
+
+  def getback
+    @ret_prev_token = true
+  end
 end
+
+# EOF.
