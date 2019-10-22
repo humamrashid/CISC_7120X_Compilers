@@ -21,7 +21,7 @@ exp() {
     switch (input_token) {
         case ID, NUM, L_PAREN:
             term();
-            exp_print();
+            exp_prime();
             return;
         default:
             error();
@@ -53,6 +53,25 @@ term() {
             fact();
             term_prime();
             return;
+        default:
+            error();
+    }
+}
+
+term_prime() {
+    switch (input_token) {
+        case MUL:
+            match(MUL);
+            fact();
+            term_prime();
+            return;
+        case DIV:
+            match(DIV);
+            fact();
+            term_prime();
+            return;
+        case PLUS, MINUS, R_PAREN, EOS:
+            break;
         default:
             error();
     }
