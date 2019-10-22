@@ -104,8 +104,9 @@ fact() {
         case L_PAREN:
             match(L_PAREN);
             exp();
+            match(R_PAREN);
             return;
-        case MUL, DIV, PLUS, MINUS, R_PAREN, EOS:
+        case MUL, DIV, PLUS, MINUS, EOS:
             return;
         default:
             error();
