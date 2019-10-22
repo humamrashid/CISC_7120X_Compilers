@@ -1,14 +1,10 @@
 #!/usr/bin/ruby
 
-require_relative 'ruby_lexer'
+require_relative 'toy_lexer'
 
-lexer = Lexer.new(gets.chomp)
-
-while (c = lexer.next_token()).type != Token::EOI
-  if c.type == Token::INT_LITERAL
-    puts "found int"
-  elsif c.type == Token::IDENTIFIER
-    puts "found id"
+class Parser
+  def parse(input)
+    @lexer = Lexer.new(input)
   end
 end
 
