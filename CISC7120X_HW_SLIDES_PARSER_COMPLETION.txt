@@ -110,7 +110,7 @@ fact() {
         case NUM:
             match(NUM);
             return;
-        case MUL, DIV, PLUS, MINUS, EOS:
+        case MUL, DIV, PLUS, MINUS, R_PAREN, EOS:
             return;
         default:
             error();
