@@ -33,9 +33,7 @@ compile but 'y = 2;' would do so.
     
     b. The CFG for {a^(i)b^(j)a^(k) | i + j = k, k >= 0} is:
 
-        S -> TU
-        T -> aTV | aTU | e
-        U -> bUV | e
-        V -> a
+        S -> aSa | R
+        R -> bRa | e
 
 4.

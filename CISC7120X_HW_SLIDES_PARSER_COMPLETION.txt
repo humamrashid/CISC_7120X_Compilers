@@ -1,0 +1,59 @@
+Humam Rashid
+CISC 7120X, Fall 2019
+
+Completion of top-down predictive parser shown in the syntax analysis slides
+using the same kind of pseudo-code that is in incomplete version on the slides.
+
+match(expected_token) {
+    if (input_token != expected_token)
+        error();
+    else
+        input_token = next_token();
+}
+
+main() {
+    input_token = next_token();
+    exp();
+    match(EOS);
+}
+
+exp() {
+    switch (input_token) {
+        case ID, NUM, L_PAREN:
+            term();
+            exp_print();
+            return;
+        default:
+            error();
+    }
+}
+
+exp_prime() {
+    switch (input_token) {
+        case PLUS:
+            match(PLUS);
+            term();
+            exp_prime();
+            break;
+        case MINUS:
+            match(MINUS);
+            term();
+            exp_prime();
+            break;
+        case R_PAREN, EOS:
+            break;
+        default:
+            error();
+    }
+}
+
+term() {
+    switch (input_token) {
+        case ID, NUM, L_PAREN:
+            fact();
+            term_prime();
+            return;
+        default:
+            error();
+    }
+}
