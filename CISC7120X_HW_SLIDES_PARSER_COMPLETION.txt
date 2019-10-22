@@ -99,12 +99,18 @@ term_prime() {
 
 fact() {
     switch (input_token) {
-        case ID, NUM, MUL, DIV, PLUS, MINUS, EOS:
-            return;
         case L_PAREN:
             match(L_PAREN);
             exp();
             match(R_PAREN);
+            return;
+        case ID:
+            match(ID);
+            return;
+        case NUM:
+            match(NUM);
+            return;
+        case MUL, DIV, PLUS, MINUS, EOS:
             return;
         default:
             error();
