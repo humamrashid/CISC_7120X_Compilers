@@ -2,7 +2,27 @@ Humam Rashid
 CISC 7120X, Fall 2019
 
 Completion of top-down predictive parser shown in the syntax analysis slides
-using the same kind of pseudo-code that is in incomplete version on the slides.
+using the same kind of pseudo-code that is in the incomplete version on the
+slides.
+
+Let e = epsilon and $ = EOS, then:
+
+FIRST(E)    = { id, num ( }
+FOLLOW(E)   = { $, ) }
+
+FIRST(E')   = { e, +, - }
+FOLLOW(E')  = { $, ) }
+
+FIRST(T)    = { id, num, ( }
+FOLLOW(T)   = { $, +, -, ) }
+
+FIRST(T')   = { e, *, / }
+FOLLOW(T')  = { $, +, -, ) }
+
+FIRST(F)    = { id, num, ( }
+FOLLOW(F)   = { $, *, /, +, -, ) }
+
+The parser essentially has the form:
 
 match(expected_token) {
     if (input_token != expected_token)
@@ -34,14 +54,14 @@ exp_prime() {
             match(PLUS);
             term();
             exp_prime();
-            break;
+            return;
         case MINUS:
             match(MINUS);
             term();
             exp_prime();
-            break;
+            return;
         case R_PAREN, EOS:
-            break;
+            return;
         default:
             error();
     }
@@ -71,8 +91,25 @@ term_prime() {
             term_prime();
             return;
         case PLUS, MINUS, R_PAREN, EOS:
-            break;
+            return;
         default:
             error();
     }
 }
+
+fact() {
+    switch (input_token) {
+        case ID, NUM:
+            return;
+        case L_PAREN:
+            match(L_PAREN);
+            exp();
+            return;
+        case MUL, DIV, PLUS, MINUS, R_PAREN, EOS:
+            return;
+        default:
+            error();
+    }
+}
+
+// EOF.
