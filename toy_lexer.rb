@@ -4,7 +4,7 @@
 # CISC 7120X, Fall 2019.
 #
 # This file includes the Token and Lexer classes. This lexer
-# uses backtracking.
+# uses either backtracking or a lookahead.
 #
 # Grammar for toy language with left-recursion removed.
 #
@@ -51,6 +51,7 @@ end
 class Lexer
   def initialize(input)
     @input = input
+    @lookahead = nil
     @ret_prev_token = false
   end
 
@@ -93,6 +94,15 @@ class Lexer
 
   def getback
     @ret_prev_token = true
+  end
+
+  def match(expected)
+    @lookahead = next_token() if lookahead.nil?
+    expected == @lookahead
+  end
+
+  def advance()
+    @lookahead = next_token()
   end
 end
 

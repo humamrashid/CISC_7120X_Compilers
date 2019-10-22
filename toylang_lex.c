@@ -27,6 +27,7 @@
  */
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 #include "toylang_lex.h"
 
 #define BUFFER_SIZE 256
@@ -89,7 +90,13 @@ int lex(void)
                                 ++current;
                             yylength = current - yytext;
                             return IDENTIFIER;
-                        } else if (isdigit(*current)) {
+                        } else if (isdigit(*current))
+                        {
+                            if (*current == '0' && strlen(current) != 1)
+                            {
+                                fprintf(stderr, "Lexer: fatal error, leading zero\n");
+                                return -1;
+                            }
                             while (isdigit(*current))
                                 ++current;
                             yylength = current - yytext;
@@ -97,8 +104,9 @@ int lex(void)
                         } else if (!isalnum(*current))
                         {
                             fprintf(stderr,
-                                    "Lexer: ignoring illegal input '%c'\n",
+                                    "Lexer: fatal error, illegal input '%c'\n",
                                     *current);
+                            return -1;
                         }
                         break;
             }
