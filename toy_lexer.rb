@@ -98,6 +98,15 @@ class Lexer
 
   def match(expected)
     @lookahead = next_token() if @lookahead.nil?
+    if (@lookahead.type != expected)
+      abort 'Lexer: fatal error'
+    else
+      @lookahead = next_token()
+    end
+  end
+
+  def cmatch(expected)
+    @lookahead = next_token() if @lookahead.nil?
     expected == @lookahead.type
   end
 

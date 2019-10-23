@@ -26,37 +26,30 @@ require_relative 'toy_lexer'
 
 class Parser
   def parse(input)
-    @lexer = Lexer.new(input)
-    assignments()
+      @lexer = Lexer.new(input)
+      assignments()
   end
 
   private
 
   def assignments()
-    if @lexer.match(Token::IDENTIFIER)
-      @lexer.advance()
-      if @lexer.match(Token::EQUAL)
-        expression()
-        @lexer.advance()
-        if @lexer.match(Token::SEMI)
-          assignments()
-        else
-          abort 'error 3'
-        end
-      else
-        abort 'error 2 '
-      end
-    else
-      abort 'error 1'
-    end
+    @lexer.match(Token::IDENTIFIER)
+    @lexer.match(Token::EQUAL)
+    expression()
+    @lexer.match(Token::SEMI)
   end
 
   def expression
   end
 end
 
-program = Parser.new
-program.parse(gets.chomp)
+
+puts "Toy Language Interpreter (v. 0.1)\n\\q to exit.\n\n"
+while true
+  print "=>>> "
+  break if (input = gets.chomp) == '\\q'
+  Parser.new.parse(input)
+end
 
 #lexer = Lexer.new(gets)
 #while !lexer.match(Token::EOI)
