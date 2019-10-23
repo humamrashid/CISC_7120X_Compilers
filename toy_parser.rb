@@ -27,7 +27,40 @@ require_relative 'toy_lexer'
 class Parser
   def parse(input)
     @lexer = Lexer.new(input)
+    assignments()
+  end
+
+  private
+
+  def assignments()
+    if @lexer.match(Token::IDENTIFIER)
+      @lexer.advance()
+      if @lexer.match(Token::EQUAL)
+        expression()
+        @lexer.advance()
+        if @lexer.match(Token::SEMI)
+          assignments()
+        else
+          abort 'error 3'
+        end
+      else
+        abort 'error 2 '
+      end
+    else
+      abort 'error 1'
+    end
+  end
+
+  def expression
   end
 end
+
+program = Parser.new
+program.parse(gets.chomp)
+
+#lexer = Lexer.new(gets)
+#while !lexer.match(Token::EOI)
+#  puts lexer.advance()
+#end
 
 # EOF.

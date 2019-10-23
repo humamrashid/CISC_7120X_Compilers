@@ -97,8 +97,8 @@ class Lexer
   end
 
   def match(expected)
-    @lookahead = next_token() if lookahead.nil?
-    expected == @lookahead
+    @lookahead = next_token() if @lookahead.nil?
+    expected == @lookahead.type
   end
 
   def advance()
