@@ -23,3 +23,29 @@
  * NonZeroDigit  -> 1 | ... | 9
  * Digit         -> 0 | 1 | ... | 9
  */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "toylang_lex.h"
+int main(void)
+{
+    int c;
+    while ((c = lex()) != EOI)
+    {
+        switch (c)
+        {
+            case -1:
+                return EXIT_FAILURE;
+            case EQUAL: printf("Entered equal sign.\n");
+                        break;
+            case INT_LITERAL:
+                        printf("Entered number.\n");
+                        break;
+            case IDENTIFIER:
+                        printf("Entered id.\n");
+                        break;
+        }
+    }
+}
+
+/* EOF. */
