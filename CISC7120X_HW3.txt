@@ -37,3 +37,11 @@ compile but 'y = 2;' would do so.
         R -> bRa | e
 
 4.
+
+Compilation Unit
+    |-Ordinary Compilation Unit
+        |-Import Declaration |-Type Declaration
+            |-Import            |-Class Declaration
+             |-...                  |-...
+
+It's long, use a parser generator, open-source ones available online.
