@@ -13,8 +13,11 @@ main =>
     printf("number_of_zeroes([0,0,0,0]) = %w\n", number_of_zeroes([0,0,0,0])),
     printf("print_pascal(5):\n"), draw_pascal(15),
     printf("euler206(): RUN\n"),
-    printf("Number of days: %d\n", days([12,19,1991],[11,20,2019])),
-    printf("%w\n", remove_consecutive_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e])).
+    printf("Number of days between 12/19/2001 and 11/20/2019: %d\n",
+        days([12,19,2001],[11,20,2019])),
+    printf("remove_consecutive_dups(): %w\n",
+        remove_consecutive_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e])),
+    printf("remove_dups: %w\n", remove_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e])).
     
 % 1. volume of a sphere, given radius R.
 sphere_volume(R) = (4 / 3) * pi * (R**3).
@@ -60,7 +63,7 @@ euler206() =>
 
 
 % 6. number of days between two dates given in some format; assuming format is:
-% [MM, DD, YYYY], i.e., a date is a list with the first element is a positive
+% [MM, DD, YYYY], i.e., a date is a list where the first element is a positive
 % integer representing month, the second element is a positive integer
 % representing day and the third element is a positive integer representing
 % year. Also assuming Gregorian calendar and that first date argument is before
@@ -92,6 +95,15 @@ remove_consecutive_dups([X|T@[X|_]]) = remove_consecutive_dups(T).
 remove_consecutive_dups([X|T]) = [X|remove_consecutive_dups(T)].
 remove_consecutive_dups(T) = T.
 
-% 8. replicate each element of the given list N number of times.
+% 8. remove all duplicate elements; uses quicksort (implemented) to sort the
+% list then remove consecutive duplicates.
+qsort([]) = [].
+qsort([H|T]) = L =>
+    L = qsort([E : E in T, E <= H]) ++
+        [H] ++
+        qsort([E : E in T, E > H]).
+remove_dups(Lst) = L =>
+    L = remove_consecuitve_dups(qsort(Lst)).
+
 
 % EOF.
