@@ -3,6 +3,7 @@
 % CISC 7120X, Fall 2019.
 
 main =>
+    % Test/driver code.
     printf("sphere_volume(5) = %w\n", sphere_volume(5)),
     printf("quadratic_equation(2,5,2) = %w\n", quadratic_equation(2,5,2)),
     printf("number_of_zeroes([]) = %w\n", number_of_zeroes([])),
