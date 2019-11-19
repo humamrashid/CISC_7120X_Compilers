@@ -15,9 +15,11 @@ main =>
     printf("euler206(): RUN\n"),
     printf("Number of days between 12/19/2001 and 11/20/2019: %d\n",
         days([12,19,2001],[11,20,2019])),
-    printf("remove_consecutive_dups(): %w\n",
+    printf("remove_consecutive_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e]): %w\n",
         remove_consecutive_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e])),
-    printf("remove_dups: %w\n", remove_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e])).
+    printf("remove_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e]): %w\n",
+        remove_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e])),
+    printf("replicate([a,b,c], 3): %w\n", replicate([a,b,c], 3)).
     
 % 1. volume of a sphere, given radius R.
 sphere_volume(R) = (4 / 3) * pi * (R**3).
@@ -104,6 +106,18 @@ qsort([H|T]) = L =>
         qsort([E : E in T, E > H]).
 remove_dups(Lst) = L =>
     L = remove_consecuitve_dups(qsort(Lst)).
+
+% 9. replicate each element of a given list N number of times.
+replicate(Lst,N) = L =>
+    replicate(Lst,N,L).
+replicate([],M,L) => L = [].
+replicate([X|Lst],N,L) =>
+    replicate_aux(X,N,L,L1),
+    replicate(Lst,N,L1).
+replicate_aux(Y,0,L,LR) => L = LR.
+replicate_aux(X,N,L,LR) => L = [X|L1], replicate_aux(X,N-1,L1,LR).
+
+% 10.
 
 
 % EOF.
