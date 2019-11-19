@@ -19,7 +19,9 @@ main =>
         remove_consecutive_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e])),
     printf("remove_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e]): %w\n",
         remove_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e])),
-    printf("replicate([a,b,c], 3): %w\n", replicate([a,b,c], 3)).
+    printf("replicate([a,b,c], 3): %w\n", replicate([a,b,c], 3)),
+    printf("split([1,2,3,4,5,6,7,8,9,0], 7): %w\n",
+        split([1,2,3,4,5,6,7,8,9,0], 7)).
     
 % 1. volume of a sphere, given radius R.
 sphere_volume(R) = (4 / 3) * pi * (R**3).
@@ -117,7 +119,13 @@ replicate([X|Lst],N,L) =>
 replicate_aux(Y,0,L,LR) => L = LR.
 replicate_aux(X,N,L,LR) => L = [X|L1], replicate_aux(X,N-1,L1,LR).
 
-% 10.
+% 10. split a given list into 2 parts with the first part having N elements.
+split(Lst, N) = (P1, P2) =>
+    split(Lst, N, P1, P2).
+split(Lst, 0, P1, P2) => P1 = [], P2 = Lst.
+split([X|Lst], N, P1, P2) =>
+    P1 = [X|P1R],
+    split(Lst, N-1, P1R, P2).
 
 
 % EOF.
