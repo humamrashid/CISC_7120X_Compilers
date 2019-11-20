@@ -22,7 +22,7 @@ main =>
     printf("min_max_median([1..10]): %w\n",
         min_max_median([1,2,3,4,5,6,7,8,9,10])),
     printf("binomial(10, 5): %w\n", binomial(10, 5)),
-    printf("subset([1,2,3,4,5], 4): %w\n", subset([1,2,3,4,5], 4)),
+    printf("subsets([1,2,3,4,5], 4): %w\n", subsets([1,2,3,4,5], 4)),
     printf("max_subarray({-1, -14, 2, 5, -25, 9}): %w\n",
         max_subarray({-1, -14, 2, 8, -25, 9})).
     
@@ -157,7 +157,7 @@ power_set([]) = [[]].
 power_set([H|T]) = P1 ++ P2 =>
     P1 = power_set(T),
     P2 = [[H|S] : S in P1].
-subset(S, N) = L =>
+subsets(S, N) = L =>
     L := [],
     P = power_set(S),
     foreach (I in P)
