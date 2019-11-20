@@ -26,7 +26,9 @@ main =>
         split([1,2,3,4,5,6,7,8,9,0], 7)),
     printf("min_max_median([1..10]): %w\n",
         min_max_median([1,2,3,4,5,6,7,8,9,10])),
-    printf("binomial(10, 5): %w\n", binomial(10, 5)).
+    printf("binomial(10, 5): %w\n", binomial(10, 5)),
+    printf("max_subarray([-1, -14, 2, 5, -25, 9]): %w\n",
+        max_subarray([-1, -14, 2, 8, -25, 9])).
     
 % 1. volume of a sphere, given radius R.
 sphere_volume(R) = (4 / 3) * pi * (R**3).
@@ -157,6 +159,26 @@ binomial(N, K) = C =>
 % 13. get all N-element subsets of a given set.
 
 % 14. get contiguous subarray which has largest sum.
+max_subarray(Arr) = S =>
+    Curr := 0,
+    Max := 0,
+    First := length(Arr),
+    Last := 0,
+    Curr_First := 0,
+    foreach (I in 1..length(Arr))
+        E = Arr[I],
+        Curr := Curr + E,
+        if E > Curr then
+            Curr := E,
+            Curr_First := I
+        end,
+        if Curr > Max then
+            Max := Curr,
+            First := Curr_First,
+            Last := I
+        end,
+    end,
+    S = Arr[First..Last].
 
 % 15.
 
