@@ -20,4 +20,8 @@ num_of_zeroes (h:t)
     | h == 0 = 1 + (num_of_zeroes t)
     | otherwise = num_of_zeroes t
 
+-- Helper functions:
+qsort [] = []
+qsort (x:xs) = qsort [y | y <- xs, y <= x]  ++ [x] ++ qsort [y | y <- xs, y > x]
+
 -- EOF.
