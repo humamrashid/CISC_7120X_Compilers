@@ -54,9 +54,18 @@ remove_consecutive_dups ys = ys
 -- list then remove consecutive duplicates.
 qsort [] = []
 qsort (x:xs) = qsort [y | y <- xs, y <= x]  ++ [x] ++ qsort [y | y <- xs, y > x]
-remove_dups lst = remove_consecutive_dups (qsort lst)
+remove_dups xs = remove_consecutive_dups (qsort xs)
 
--- min, max, median
-min_max_median [] = undefined
+-- 11. Get the min, max, median of a given list of numbers.
+my_sum [] = 0
+my_sum (h:t) = h + (my_sum t)
+my_len [] = 0
+my_len (h:t) = 1 + (my_len t)
+my_avg [] = error "empty list"
+my_avg xs = my_sum xs / (my_len xs)
+min_max_median [] = error "empty list"
+min_max_median [x] = (x, x, x)
+min_max_median xs = (head ss, last ss, my_avg ss)
+    where ss = qsort xs
 
 -- EOF.
