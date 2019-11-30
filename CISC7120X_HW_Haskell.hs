@@ -56,4 +56,7 @@ qsort [] = []
 qsort (x:xs) = qsort [y | y <- xs, y <= x]  ++ [x] ++ qsort [y | y <- xs, y > x]
 remove_dups lst = remove_consecutive_dups (qsort lst)
 
+-- min, max, median
+min_max_median [] = undefined
+
 -- EOF.
