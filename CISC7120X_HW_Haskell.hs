@@ -21,11 +21,9 @@ num_of_zeroes (h:t)
     | otherwise = num_of_zeroes t
 
 -- 4. Print N rows of Pascal's triangle.
-pascal :: [[Int]]
 pascal = iterate (\row -> zipWith (+) ([0] ++ row) (row ++ [0])) [1]
-
-draw_pascal :: [[Int]] -> IO ()
-draw_pascal = mapM_ (putStrLn . unwords . map show)
+pascal_printer = mapM_ (putStrLn . unwords . map show)
+draw_pascal n = pascal_printer $ take n pascal
 
 -- Helper functions:
 qsort [] = []
