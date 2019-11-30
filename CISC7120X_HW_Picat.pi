@@ -9,7 +9,7 @@ main =>
     printf("number_of_zeroes([1,0,2,0,3]) = %w\n",
         number_of_zeroes([1,0,2,0,3])),
     printf("print_pascal(5):\n"), draw_pascal(5),
-    printf("euler206(): %w\n", euler206()),
+    printf("euler206() <not called due to time consumption>:\n"),
     printf("Number of days between 12/19/2001 and 11/20/2019: %d\n",
         days([12,19,2001],[11,20,2019])),
     printf("remove_consecutive_dups([a,a,a,a,b,c,c,a,a,d,e,e,e,e]): %w\n",
@@ -42,7 +42,7 @@ number_of_zeroes([H|T]) = N =>
 
 % 4. print N rows of Pascal's triangle.
 draw_pascal(N) =>
-    foreach (I in 0..N)
+    foreach (I in 0..N - 1)
         Num := 1,
         printf("%*s", N-I, " "),
         foreach(K in 0..I)

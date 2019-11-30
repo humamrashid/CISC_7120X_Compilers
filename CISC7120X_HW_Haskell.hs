@@ -20,6 +20,13 @@ num_of_zeroes (h:t)
     | h == 0 = 1 + (num_of_zeroes t)
     | otherwise = num_of_zeroes t
 
+-- 4. Print N rows of Pascal's triangle.
+pascal :: [[Int]]
+pascal = iterate (\row -> zipWith (+) ([0] ++ row) (row ++ [0])) [1]
+
+draw_pascal :: [[Int]] -> IO ()
+draw_pascal = mapM_ (putStrLn . unwords . map show)
+
 -- Helper functions:
 qsort [] = []
 qsort (x:xs) = qsort [y | y <- xs, y <= x]  ++ [x] ++ qsort [y | y <- xs, y > x]
