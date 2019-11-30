@@ -37,7 +37,7 @@ judge n = s!!0=='1'  && s!!2=='2'  && s!!4=='3'  &&
     where s = show n
 euler206 = find (\n->judge$n^2) [1010101010,1010101020..1389026623]
 
--- Get number of days between two dates given in some format; assuming format
+-- 6. Get number of days between two dates given in some format; assuming format
 -- is: (MM, DD, YYYY), i.e., a date is a tuple of three positive integers each
 -- representing the month, day and year, respectively, in the Gregorian
 -- calendar.
@@ -50,11 +50,16 @@ remove_consecutive_dups (x:ys@(y:_))
     | otherwise = x : remove_consecutive_dups ys
 remove_consecutive_dups ys = ys
 
--- 8. remove all duplicate elements; uses quicksort (implemented) to sort the
+-- 8. Remove all duplicate elements; uses quicksort (implemented) to sort the
 -- list then remove consecutive duplicates.
 qsort [] = []
 qsort (x:xs) = qsort [y | y <- xs, y <= x]  ++ [x] ++ qsort [y | y <- xs, y > x]
 remove_dups xs = remove_consecutive_dups (qsort xs)
+
+-- 9. Replicate the elements of a list a given number of times.
+-- 'replicate' is a Haskell standard library function, so this version is called
+-- 'my_replicate'.
+my_replicate (xs, n) = concatMap (take n . repeat) xs
 
 -- 11. Get the min, max, median of a given list of numbers.
 my_sum [] = 0
@@ -67,5 +72,7 @@ min_max_median [] = error "empty list"
 min_max_median [x] = (x, x, x)
 min_max_median xs = (head ss, last ss, my_avg ss)
     where ss = qsort xs
+
+-- 12.
 
 -- EOF.
