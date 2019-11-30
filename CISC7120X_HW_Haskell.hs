@@ -81,6 +81,7 @@ min_max_median [x] = (x, x, x)
 min_max_median xs = (head ss, last ss, my_avg ss)
     where ss = qsort xs
 
--- 12.
+-- 12. Get the binomial coefficient.
+bc n k = product [k+1..n] `div` product [1..n-k]
 
 -- EOF.
