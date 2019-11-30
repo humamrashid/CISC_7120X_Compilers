@@ -68,7 +68,6 @@ euler206() =>
         end
     end.
 
-
 % 6. number of days between two dates given in some format; assuming format is:
 % [MM, DD, YYYY], i.e., a date is a list where the first element is a positive
 % integer representing month, the second element is a positive integer
