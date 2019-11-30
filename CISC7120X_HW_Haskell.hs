@@ -61,6 +61,14 @@ remove_dups xs = remove_consecutive_dups (qsort xs)
 -- 'my_replicate'.
 my_replicate (xs, n) = concatMap (take n . repeat) xs
 
+-- 10. Split a given list into 2 parts, the first part having the given n number
+-- of elements.
+split [] _ = ([], [])
+split lst@(x:xs) n
+    | n > 0 = (x:ys,zs)
+    | otherwise = ([],lst)
+    where (ys,zs) = split xs (n-1)
+
 -- 11. Get the min, max, median of a given list of numbers.
 my_sum [] = 0
 my_sum (h:t) = h + (my_sum t)
