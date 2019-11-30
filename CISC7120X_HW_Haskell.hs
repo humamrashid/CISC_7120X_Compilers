@@ -3,6 +3,7 @@
 -- Haskell Homework.
 
 import Data.List
+import Data.Time.Calendar
 
 -- 1. Get volume of a sphere given radius r.
 sphere r = (4/3) * pi * (r**3)
@@ -35,8 +36,24 @@ judge n = s!!0=='1'  && s!!2=='2'  && s!!4=='3'  &&
           s!!18=='0'
     where s = show n
 euler206 = find (\n->judge$n^2) [1010101010,1010101020..1389026623]
--- Helper functions:
+
+-- Get number of days between two dates given in some format; assuming format
+-- is: (MM, DD, YYYY), i.e., a date is a tuple of three positive integers each
+-- representing the month, day and year, respectively, in the Gregorian
+-- calendar.
+days :: Day -> Day  -> Integer
+days day1 day2 = diffDays day1 day2
+
+-- 7. Remove consecutive duplicates of elements from given list.
+remove_consecutive_dups (x:ys@(y:_))
+    | x == y = remove_consecutive_dups ys
+    | otherwise = x : remove_consecutive_dups ys
+remove_consecutive_dups ys = ys
+
+-- 8. remove all duplicate elements; uses quicksort (implemented) to sort the
+-- list then remove consecutive duplicates.
 qsort [] = []
 qsort (x:xs) = qsort [y | y <- xs, y <= x]  ++ [x] ++ qsort [y | y <- xs, y > x]
+remove_dups lst = remove_consecutive_dups (qsort lst)
 
 -- EOF.
