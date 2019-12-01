@@ -84,4 +84,10 @@ min_max_median xs = (head ss, last ss, my_avg ss)
 -- 12. Get the binomial coefficient.
 bc n k = product [k+1..n] `div` product [1..n-k]
 
+-- 13. Get all n-element subsets of a given set.
+powerset [] = [[]]
+powerset (h:t) = acc ++ (map (h:) acc) where acc = powerset t
+subsets xs n = [ys | ys <- powerset xs, length ys == n]
+
+
 -- EOF.
