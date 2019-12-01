@@ -3,7 +3,8 @@
 -- Haskell Homework.
 
 import Data.List
-import Data.Time.Calendar
+import Data.Ord
+--import Data.Time.Calendar
 
 -- 1. Get volume of a sphere given radius r.
 sphere r = (4/3) * pi * (r**3)
@@ -41,8 +42,8 @@ euler206 = find (\n->judge$n^2) [1010101010,1010101020..1389026623]
 -- is: (MM, DD, YYYY), i.e., a date is a tuple of three positive integers each
 -- representing the month, day and year, respectively, in the Gregorian
 -- calendar.
-days :: Day -> Day  -> Integer
-days day1 day2 = diffDays day1 day2
+--days :: Day -> Day  -> Integer
+--days day1 day2 = diffDays day1 day2
 
 -- 7. Remove consecutive duplicates of elements from given list.
 remove_consecutive_dups (x:ys@(y:_))
@@ -89,5 +90,9 @@ powerset [] = [[]]
 powerset (h:t) = acc ++ (map (h:) acc) where acc = powerset t
 subsets xs n = [ys | ys <- powerset xs, length ys == n]
 
+-- 14. Get contiguous sublist which has largest sum.
+sublists [] = []
+sublists xs = tail $ inits xs ++ sublists (tail xs)
+max_sublist = last . sortBy (comparing sum) . sublists
 
 -- EOF.
