@@ -4,7 +4,7 @@
 
 import Data.List
 import Data.Ord
---import Data.Time.Calendar
+import Data.Time
 
 -- 1. Get volume of a sphere given radius r.
 sphere r = (4/3) * pi * (r**3)
@@ -42,8 +42,10 @@ euler206 = find (\n->judge$n^2) [1010101010,1010101020..1389026623]
 -- is: (MM, DD, YYYY), i.e., a date is a tuple of three positive integers each
 -- representing the month, day and year, respectively, in the Gregorian
 -- calendar.
---days :: Day -> Day  -> Integer
---days day1 day2 = diffDays day1 day2
+days (m1, d1, y1) (m2, d2, y2) = diffDays b a
+    where
+    a = (fromGregorian y1 m1 d1)
+    b = (fromGregorian y2 m2 d2)
 
 -- 7. Remove consecutive duplicates of elements from given list.
 remove_consecutive_dups (x:ys@(y:_))
