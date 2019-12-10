@@ -92,6 +92,28 @@ def min_max_median(lst):
     n = len(s)
     return (s[0], s[n-1], 0.5 * (s[(n-1) // 2] + s[n // 2]))
 
-print(min_max_median([1,2,3,-1]))
+# 12. Get the binomial coefficient.
+def bc(n, k):
+    if k == 0:
+        return 1
+    if n == k:
+        return 1
+    return bc(n-1, k) + bc(n-1, k-1)
+
+# 13. Get the n-element subsets of a given set.
+def powerset(s):
+    if s == []:
+        return [[]]
+    [x, *s1] = s
+    ps1 = powerset(s1)
+    ps2 = [[x] + sub for sub in ps1]
+    return ps1 + ps2
+def subsets(s, n):
+    l = []
+    ps = powerset(s)
+    for i in ps:
+        if len(i) == n:
+            l.append(i)
+    return l
 
 # EOF.
