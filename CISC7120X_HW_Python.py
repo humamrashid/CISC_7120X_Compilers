@@ -116,4 +116,11 @@ def subsets(s, n):
             l.append(i)
     return l
 
+# 14. get contiguous subarray which has largest sum.
+def maximum_subarray(arr):
+    return max((arr[begin:end] for begin in range(len(arr)+1)
+                               for end in range(begin, len(arr)+1)),
+                               key=sum
+              )
+
 # EOF.
