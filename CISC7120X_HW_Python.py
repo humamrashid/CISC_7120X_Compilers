@@ -74,4 +74,24 @@ def remove_dups(lst):
             l.append(e)
     return l
 
+# 9. Replicate each element of a given list n number of times.
+def replicate(lst, n):
+    l = []
+    for i in lst:
+        for j in range(n):
+            l.append(i)
+    return l
+
+# 10. Split a given list into 2 parts with the first part having n elements.
+def split(lst, n):
+    return (lst[0:n], lst[n:0])
+
+# 11. Get the min, max and median of a given list of numbers.
+def min_max_median(lst):
+    s = sorted(lst)
+    n = len(s)
+    return (s[0], s[n-1], 0.5 * (s[(n-1) // 2] + s[n // 2]))
+
+print(min_max_median([1,2,3,-1]))
+
 # EOF.
