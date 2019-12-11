@@ -23,6 +23,9 @@
 # NonZeroDigit  -> 1 | ... | 9
 # Digit         -> 0 | 1 | ... | 9
 
+class LexerException < StandardError
+end
+
 class Token
   attr_accessor :type
   attr_accessor :value
@@ -99,7 +102,7 @@ class Lexer
   def match(expected)
     @lookahead = next_token() if @lookahead.nil?
     if (@lookahead.type != expected)
-      abort 'Lexer: fatal error'
+      raise LexerException.new('unexpected token')
     else
       @lookahead = next_token()
     end

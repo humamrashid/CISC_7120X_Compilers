@@ -33,16 +33,19 @@ class Parser
   private
 
   def assignments()
-    @lexer.match(Token::IDENTIFIER)
-    @lexer.match(Token::EQUAL)
-    expression()
-    @lexer.match(Token::SEMI)
+    begin
+      @lexer.match(Token::IDENTIFIER)
+      @lexer.match(Token::EQUAL)
+      expression()
+      @lexer.match(Token::SEMI)
+    rescue LexerException => e
+      puts e
+    end
   end
 
   def expression
   end
 end
-
 
 puts "Toy Language Interpreter (v. 0.1)\n\\q to exit.\n\n"
 while true
