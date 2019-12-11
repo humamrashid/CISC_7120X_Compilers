@@ -46,7 +46,7 @@ end
 
 puts "Toy Language Interpreter (v. 0.1)\n\\q to exit.\n\n"
 while true
-  print "=>>> "
+  print '=>>> '
   break if (input = gets.chomp) == '\\q'
   Parser.new.parse(input)
 end
