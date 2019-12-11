@@ -27,36 +27,59 @@ require_relative 'toy_lexer'
 class Parser
   def parse(input)
       @lexer = Lexer.new(input)
-      assignments()
+      assignments
   end
 
   private
 
-  def assignments()
-    begin
-      @lexer.match(Token::IDENTIFIER)
-      @lexer.match(Token::EQUAL)
-      expression()
-      @lexer.match(Token::SEMI)
-    rescue LexerException => e
-      puts e
+  def assignments
+    if @lexer.cmatch(Token::IDENTIFIER)
+      @lexer.advance
+      if @lexer.cmatch(Token::EQUAL)
+        @lexer.advance
+        expression
+        if @lexer.cmatch(Token::SEMI)
+          if !@lexer.cmatch(Token::EOI)
+            assignments
+          end
+        end
+      end
+    else
+      puts 'Error: ident'
     end
   end
 
   def expression
+    term
+    expression_prime
+  end
+
+  def expression_prime
+  end
+
+  def term
+    fact
+    term_prime
+  end
+
+  def term_prime
+  end
+
+  def fact
   end
 end
 
-puts "Toy Language Interpreter (v. 0.1)\n\\q to exit.\n\n"
-while true
-  print '=>>> '
-  break if (input = gets.chomp) == '\\q'
-  Parser.new.parse(input)
+if ARGV.length == 0
+  puts "Toy Language Interpreter (v. 0.1)\n\\q to exit.\n\n"
+  while true
+    print '=>>> '
+    break if (input = gets.chomp) == '\\q'
+    Parser.new.parse(input)
+  end
+elsif ARGV.length == 1
+  Parser.new.parse(gets(nil))
+else
+  abort "Usage: #{$PROGRAM_NAME} [program_file]"
 end
-
-#lexer = Lexer.new(gets)
-#while !lexer.match(Token::EOI)
-#  puts lexer.advance()
-#end
 
 # EOF.

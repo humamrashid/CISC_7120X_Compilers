@@ -58,7 +58,7 @@ class Lexer
     @ret_prev_token = false
   end
 
-  def next_token()
+  def next_token
     if @ret_prev_token
       @ret_prev_token = false
       return @prev_token
@@ -113,7 +113,7 @@ class Lexer
     expected == @lookahead.type
   end
 
-  def advance()
+  def advance
     @lookahead = next_token()
   end
 end
