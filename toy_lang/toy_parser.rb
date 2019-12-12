@@ -43,7 +43,7 @@ class Parser
         expression
         if @lexer.match?(Token::SEMI)
           if !@lexer.match?(Token::EOI)
-            assignments
+            #assignments
           end
         else
         end
