@@ -127,8 +127,8 @@ class Lexer
   # value of token matched, nil if not matched.
   #
   # This method is useful when the value of the token is
-  # needed for further processing, matched values are never
-  # nil.
+  # needed for further processing; successfully matched
+  # values are never nil.
   def match_value?(expected)
     @lookahead = next_token() if @lookahead.nil?
     expected == @lookahead.type ? @lookahead.value : nil
