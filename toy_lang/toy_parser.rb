@@ -61,6 +61,7 @@ class Parser
     #term
     #expression_prime
     @lexer.advance
+    1
   end
 
   def expression_prime
