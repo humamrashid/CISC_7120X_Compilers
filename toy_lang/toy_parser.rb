@@ -70,8 +70,8 @@ class Parser
   end
 
   def assignments2
-    matched_eoi = false
-    while !matched_eoi do
+    reached_eoi = false
+    while !reached_eoi do
       matched, ident = @lexer.match?(Token::IDENTIFIER)
       raise ParserException, 'Identifier expected!' if !matched
       @lexer.advance
@@ -84,7 +84,7 @@ class Parser
       raise ParserException, 'Semicolon Missing!' if !matched
       puts @@symtab
       @lexer.advance
-      matched_eoi, _ = @lexer.match?(Token::EOI)
+      reached_eoi, _ = @lexer.match?(Token::EOI)
     end
   end
 
