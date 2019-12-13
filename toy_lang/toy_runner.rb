@@ -18,7 +18,7 @@ if ARGV.length == 0
     begin
       print '=>>> '
       input = gets
-      if !input
+      if input.nil?
         puts 'Quitting...'
         break
       end

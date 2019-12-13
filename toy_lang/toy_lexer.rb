@@ -72,10 +72,10 @@ class Lexer
       token.type = Token::EOI
     when /\A=/
       token.type = Token::EQUAL
-      token.value = $& # useful for debugging.
+      token.value = $&
     when /\A;/
       token.type = Token::SEMI
-      token.value = $& # useful for debugging.
+      token.value = $&
     when /\A\+/
       token.type = Token::PLUS
       token.value = $&
@@ -109,11 +109,16 @@ class Lexer
     @ret_prev_token = true
   end
 
+  # Check if the lookahead matches expected token; returns 2
+  # values:
+  # 1. boolean value indicating if matched.
+  # 2. value of token matched, nil if match is false.
   def match?(expected)
     @lookahead = next_token() if @lookahead.nil?
     [expected == @lookahead.type, @lookahead.value]
   end
 
+  # Advances to the next token, ignore return value.
   def advance
     @lookahead = next_token()
   end

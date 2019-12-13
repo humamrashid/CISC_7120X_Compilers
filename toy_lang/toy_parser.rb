@@ -33,8 +33,10 @@ end
 class Parser
 
   def parse(input)
+    if input != "\n"
       @lexer = Lexer.new(input)
       assignments
+    end
   end
 
   private 
@@ -55,6 +57,9 @@ class Parser
     matched, _ = @lexer.match?(Token::SEMI)
     raise ParserException, 'Semicolon Missing!' if !matched
     puts @@symtab
+    @lexer.advance
+    matched, _ = @lexer.match?(Token::EOI)
+    assignments if !matched
   end
 
   def expression
