@@ -25,9 +25,11 @@
 # NonZeroDigit  -> 1 | ... | 9
 # Digit         -> 0 | 1 | ... | 9
 
+# Exception type specific to the lexer.
 class LexerException < StandardError
 end
 
+# Class for representing inividual tokens.
 class Token
   attr_accessor :type
   attr_accessor :value

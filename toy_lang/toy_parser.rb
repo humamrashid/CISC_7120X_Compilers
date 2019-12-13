@@ -27,19 +27,25 @@
 
 require_relative 'toy_lexer'
 
+# Exception type specific to the parser.
 class ParserException < StandardError
 end
 
+# A parser is an instance of class Parser.
 class Parser
-
   def parse(input)
     if input != "\n"
       @lexer = Lexer.new(input)
-      assignments
+      assignments2
     end
   end
 
-  private 
+  # Prints out assignment values in order of entry.
+  def print_vals
+    @@symtab.each {|k,v| puts "#{k} = #{v}"}
+  end
+
+  protected
 
   # symbol table for assignments.
   @@symtab = {}
@@ -59,12 +65,32 @@ class Parser
     puts @@symtab
     @lexer.advance
     matched, _ = @lexer.match?(Token::EOI)
+    # recursive call if there is more input.
     assignments if !matched
   end
 
+  def assignments2
+    matched_eoi = false
+    while !matched_eoi do
+      matched, ident = @lexer.match?(Token::IDENTIFIER)
+      raise ParserException, 'Identifier expected!' if !matched
+      @lexer.advance
+      matched, _ = @lexer.match?(Token::EQUAL)
+      raise ParserException, 'Equal sign expected!' if !matched
+      @lexer.advance
+      exp_val = expression()
+      @@symtab[ident] = exp_val
+      matched, _ = @lexer.match?(Token::SEMI)
+      raise ParserException, 'Semicolon Missing!' if !matched
+      puts @@symtab
+      @lexer.advance
+      matched_eoi, _ = @lexer.match?(Token::EOI)
+    end
+  end
+
   def expression
-    #term
-    #expression_prime
+    #term_val = term()
+    #expp_val = expression_prime()
     @lexer.advance
     1
   end
@@ -76,6 +102,8 @@ class Parser
       term
       expression_prime
     end
+    matched_p = matched_m = nil
+    matched_p, _ = @lexer.match?(Token::PLUS)
   end
 
   def term
