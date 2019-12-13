@@ -2,6 +2,9 @@
 #
 # Toy Language Runner (running code for parser).
 #
+# Initial design partially based on L. Wrobel's math
+# parser.
+#
 # Humam Rashid
 # CISC 7120X, Fall 2019.
 
@@ -14,10 +17,14 @@ if ARGV.length == 0
   loop do
     begin
       print '=>>> '
-      parser.parse(gets)
-    rescue Exception
-      puts 'Quitting...'
-      break
+      input = gets
+      if !input
+        puts 'Quitting...'
+        break
+      end
+      parser.parse(input)
+    rescue StandardError => se
+      puts 'Error: ' + se.to_s
     end
   end
 elsif ARGV.length == 1

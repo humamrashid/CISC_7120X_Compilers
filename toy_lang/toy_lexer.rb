@@ -3,6 +3,9 @@
 # Humam Rashid
 # CISC 7120X, Fall 2019.
 #
+# Initial design partially based on L. Wrobel's math
+# parser.
+#
 # This file includes the Token and Lexer classes.
 #
 # Grammar for toy language with left-recursion removed.
@@ -62,7 +65,6 @@ class Lexer
       @ret_prev_token = false
       return @prev_token
     end
-
     token = Token.new
     @input.lstrip!
     case @input
@@ -76,30 +78,29 @@ class Lexer
       token.value = $& # useful for debugging.
     when /\A\+/
       token.type = Token::PLUS
-      token.value = $& # useful for debugging.
+      token.value = $&
     when /\A-/
       token.type = Token::MINUS
-      token.value = $& # useful for debugging.
+      token.value = $&
     when /\A\*/
       token.type = Token::TIMES
-      token.value = $& # useful for debugging.
+      token.value = $&
     when /\A\(/
       token.type = Token::L_PAREN
-      token.value = $& # useful for debugging.
+      token.value = $&
     when /\A\)/
       token.type = Token::R_PAREN
-      token.value = $& # useful for debugging.
+      token.value = $&
     when /\A([a-z]|[A-Z]|_)\w*\b/
       token.type = Token::IDENTIFIER
-      token.value = $& # actually needed.
+      token.value = $&
     when /\A0\Z|\A[1-9]\d*\b/
       token.type = Token::INT_LITERAL
-      token.value = $&.to_i # actually needed.
+      token.value = $&.to_i
     end
     raise LexerException,
       "unknown token #{@input}" if token.unknown?
     @input = $'
-
     @prev_token = token
     token
   end

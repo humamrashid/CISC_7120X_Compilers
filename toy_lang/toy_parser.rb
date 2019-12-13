@@ -3,6 +3,9 @@
 # Humam Rashid
 # CISC 7120X, Fall 2019.
 #
+# Initial design partially based on L. Wrobel's math
+# parser.
+#
 # This file includes the Parser class.
 #
 # Grammar for toy language with left-recursion removed.
@@ -28,34 +31,36 @@ class ParserException < StandardError
 end
 
 class Parser
+
   def parse(input)
       @lexer = Lexer.new(input)
       assignments
   end
 
-  protected
+  private 
+
+  # symbol table for assignments.
+  @@symtab = {}
 
   def assignments
-    matching, token_val = @lexer.match?(Token::IDENTIFIER)
-    if !matching
-      raise ParserException, 'Identifier expected!'
-    end
+    matched = nil
+    matched, ident = @lexer.match?(Token::IDENTIFIER)
+    raise ParserException, 'Identifier expected!' if !matched
     @lexer.advance
-    matching, token_val = @lexer.match?(Token::EQUAL)
-    if !matching
-      raise ParserException, 'Equal sign expected!'
-    end
+    matched, _ = @lexer.match?(Token::EQUAL)
+    raise ParserException, 'Equal sign expected!' if !matched
     @lexer.advance
-    #expression
-    matching, token_val = @lexer.match?(Token::SEMI)
-    if !matching
-      raise ParserException, 'Missing Semicolon!'
-    end
+    exp_val = expression()
+    @@symtab[ident] = exp_val
+    matched, _ = @lexer.match?(Token::SEMI)
+    raise ParserException, 'Semicolon Missing!' if !matched
+    puts @@symtab
   end
 
   def expression
-    term
-    expression_prime
+    #term
+    #expression_prime
+    @lexer.advance
   end
 
   def expression_prime
