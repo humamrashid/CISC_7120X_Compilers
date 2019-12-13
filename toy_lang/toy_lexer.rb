@@ -96,7 +96,8 @@ class Lexer
       token.type = Token::INT_LITERAL
       token.value = $&.to_i # actually needed.
     end
-    raise "unknown token #{@input}" if token.unknown?
+    raise LexerException,
+      "unknown token #{@input}" if token.unknown?
     @input = $'
 
     @prev_token = token

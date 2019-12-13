@@ -36,14 +36,20 @@ class Parser
   protected
 
   def assignments
-    matching, value = @lexer.match?(Token::IDENTIFIER)
-    if matching
-      puts value
+    matching, token_val = @lexer.match?(Token::IDENTIFIER)
+    if !matching
+      raise ParserException, 'Identifier expected!'
     end
     @lexer.advance
-    matching, value = @lexer.match?(Token::EQUAL)
-    if matching
-      puts value
+    matching, token_val = @lexer.match?(Token::EQUAL)
+    if !matching
+      raise ParserException, 'Equal sign expected!'
+    end
+    @lexer.advance
+    #expression
+    matching, token_val = @lexer.match?(Token::SEMI)
+    if !matching
+      raise ParserException, 'Missing Semicolon!'
     end
   end
 
