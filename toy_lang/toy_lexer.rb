@@ -72,6 +72,7 @@ class Lexer
     case @input
     when ''
       token.type = Token::EOI
+      token.value = $&
     when /\A=/
       token.type = Token::EQUAL
       token.value = $&
@@ -111,16 +112,29 @@ class Lexer
     @ret_prev_token = true
   end
 
-  # Check if the lookahead matches expected token; returns 2
-  # values:
-  # 1. boolean value indicating if matched.
-  # 2. value of token matched, nil if match is false.
+  # Checks if the lookahead matches expected token; returns
+  # boolean value indicating if matched.
+  #
+  # This method is useful when the value of the token is
+  # not needed for further procesing and we care only about
+  # whether a match was made.
   def match?(expected)
     @lookahead = next_token() if @lookahead.nil?
-    [expected == @lookahead.type, @lookahead.value]
+    expected == @lookahead.type
   end
 
-  # Advances to the next token, ignore return value.
+  # Checks if the lookahead matches expected token; returns
+  # value of token matched, nil if not matched.
+  #
+  # This method is useful when the value of the token is
+  # needed for further processing, matched values are never
+  # nil.
+  def match_value?(expected)
+    @lookahead = next_token() if @lookahead.nil?
+    expected == @lookahead.type ? @lookahead.value : nil
+  end
+
+  # Advances to the next token, safely ignore return value.
   def advance
     @lookahead = next_token()
   end

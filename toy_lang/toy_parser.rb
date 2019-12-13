@@ -36,7 +36,7 @@ class Parser
   def parse(input)
     if input != "\n"
       @lexer = Lexer.new(input)
-      assignments2
+      assignments_itr
     end
   end
 
@@ -50,60 +50,32 @@ class Parser
   # symbol table for assignments.
   @@symtab = {}
 
-  def assignments
-    matched = nil
-    matched, ident = @lexer.match?(Token::IDENTIFIER)
-    raise ParserException, 'Identifier expected!' if !matched
-    @lexer.advance
-    matched, _ = @lexer.match?(Token::EQUAL)
-    raise ParserException, 'Equal sign expected!' if !matched
-    @lexer.advance
-    exp_val = expression()
-    @@symtab[ident] = exp_val
-    matched, _ = @lexer.match?(Token::SEMI)
-    raise ParserException, 'Semicolon Missing!' if !matched
-    puts @@symtab
-    @lexer.advance
-    matched, _ = @lexer.match?(Token::EOI)
-    # recursive call if there is more input.
-    assignments if !matched
-  end
-
-  def assignments2
+  def assignments_itr
     reached_eoi = false
     while !reached_eoi do
-      matched, ident = @lexer.match?(Token::IDENTIFIER)
-      raise ParserException, 'Identifier expected!' if !matched
+      ident = @lexer.match_value?(Token::IDENTIFIER)
+      raise ParserException,
+        'Identifier expected!' if ident.nil?
       @lexer.advance
-      matched, _ = @lexer.match?(Token::EQUAL)
-      raise ParserException, 'Equal sign expected!' if !matched
+      raise ParserException,
+        'Equal sign expected!' if !@lexer.match?(Token::EQUAL)
       @lexer.advance
       exp_val = expression()
       @@symtab[ident] = exp_val
-      matched, _ = @lexer.match?(Token::SEMI)
-      raise ParserException, 'Semicolon Missing!' if !matched
+      raise ParserException,
+        'Semicolon Missing!' if !@lexer.match?(Token::SEMI)
       puts @@symtab
       @lexer.advance
-      reached_eoi, _ = @lexer.match?(Token::EOI)
+      reached_eoi = @lexer.match?(Token::EOI)
     end
   end
 
   def expression
-    #term_val = term()
-    #expp_val = expression_prime()
-    @lexer.advance
-    1
+    temp1 = term()
+    while 
   end
 
   def expression_prime
-    if @lexer.match?(Token::PLUS) ||
-        @lexer.match?(Token::MINUS)
-      @lexer.advance
-      term
-      expression_prime
-    end
-    matched_p = matched_m = nil
-    matched_p, _ = @lexer.match?(Token::PLUS)
   end
 
   def term
