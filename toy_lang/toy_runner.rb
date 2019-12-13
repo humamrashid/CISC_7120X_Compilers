@@ -21,7 +21,6 @@ if ARGV.length == 0
     end
   end
 elsif ARGV.length == 1
-  #parser.parse(gets(nil))
   File.foreach(ARGV[0]) { |line| parser.parse(line) }
 else
   abort "Usage: #{$PROGRAM_NAME} [program_file]"
