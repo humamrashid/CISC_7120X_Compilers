@@ -33,23 +33,17 @@ class Parser
       assignments
   end
 
-  private
+  protected
 
   def assignments
-    if @lexer.match?(Token::IDENTIFIER)
-      @lexer.advance
-      if @lexer.match?(Token::EQUAL)
-        @lexer.advance
-        expression
-        if @lexer.match?(Token::SEMI)
-          if !@lexer.match?(Token::EOI)
-            #assignments
-          end
-        else
-        end
-      end
-    else
-      puts 'Error: ident'
+    matching, value = @lexer.match?(Token::IDENTIFIER)
+    if matching
+      puts value
+    end
+    @lexer.advance
+    matching, value = @lexer.match?(Token::EQUAL)
+    if matching
+      puts value
     end
   end
 
@@ -98,19 +92,5 @@ class Parser
     end
   end
 end
-
-#if ARGV.length == 0
-  #puts "Toy Language Interpreter (v. 0.1)\n\\q to exit.\n\n"
-  #while true
-    #print '=>>> '
-    #break if (input = gets.chomp) == '\\q'
-    #Parser.new.parse(input)
-  #end
-if ARGV.length == 1
-  Parser.new.parse(gets(nil))
-else
-  abort "Usage: #{$PROGRAM_NAME} [program_file]"
-end
-puts 'Exiting...'
 
 # EOF.

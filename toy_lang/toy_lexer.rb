@@ -3,8 +3,7 @@
 # Humam Rashid
 # CISC 7120X, Fall 2019.
 #
-# This file includes the Token and Lexer classes. This lexer
-# uses either backtracking or a lookahead.
+# This file includes the Token and Lexer classes.
 #
 # Grammar for toy language with left-recursion removed.
 #
@@ -71,24 +70,31 @@ class Lexer
       token.type = Token::EOI
     when /\A=/
       token.type = Token::EQUAL
+      token.value = $& # useful for debugging.
     when /\A;/
       token.type = Token::SEMI
+      token.value = $& # useful for debugging.
     when /\A\+/
       token.type = Token::PLUS
+      token.value = $& # useful for debugging.
     when /\A-/
       token.type = Token::MINUS
+      token.value = $& # useful for debugging.
     when /\A\*/
       token.type = Token::TIMES
+      token.value = $& # useful for debugging.
     when /\A\(/
       token.type = Token::L_PAREN
+      token.value = $& # useful for debugging.
     when /\A\)/
       token.type = Token::R_PAREN
+      token.value = $& # useful for debugging.
     when /\A([a-z]|[A-Z]|_)\w*\b/
       token.type = Token::IDENTIFIER
-      token.value = $&
+      token.value = $& # actually needed.
     when /\A0\Z|\A[1-9]\d*\b/
       token.type = Token::INT_LITERAL
-      token.value = $&.to_i
+      token.value = $&.to_i # actually needed.
     end
     raise "unknown token #{@input}" if token.unknown?
     @input = $'
@@ -97,22 +103,13 @@ class Lexer
     token
   end
 
-  def getback
+  def get_back
     @ret_prev_token = true
-  end
-
-  def match(expected)
-    @lookahead = next_token() if @lookahead.nil?
-    if (@lookahead.type != expected)
-      raise LexerException.new('unexpected token')
-    else
-      @lookahead = next_token()
-    end
   end
 
   def match?(expected)
     @lookahead = next_token() if @lookahead.nil?
-    expected == @lookahead.type
+    [expected == @lookahead.type, @lookahead.value]
   end
 
   def advance
