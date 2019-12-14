@@ -67,7 +67,7 @@ class Parser
       raise ParserException,
         'Equal sign expected!' if !@lexer.match?(expected)
       @lexer.advance
-      @@symtab[ident] = expo()
+      @@symtab[ident] = expression()
       expected = [Token::SEMI]
       raise ParserException,
         'Semicolon missing!' if !@lexer.match?(expected)

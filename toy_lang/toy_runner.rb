@@ -38,6 +38,6 @@ elsif ARGV.length == 1
 else
   abort "Usage: #{$PROGRAM_NAME} [program_file]"
 end
-#parser.print_vals
+parser.print_vals
 
 # EOF.
