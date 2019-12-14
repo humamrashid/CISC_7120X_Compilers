@@ -112,29 +112,44 @@ class Lexer
     @ret_prev_token = true
   end
 
-  # Checks if the lookahead matches expected token; returns
-  # boolean value indicating if matched.
+  # Checks if the lookahead matches any of the expected
+  # tokens. Expected tokens are passed in an array.
+  # Returns boolean value indicating if matched.
   #
   # This method is useful when the value of the token is
-  # not needed for further procesing and we care only about
+  # not needed for further procesing; we care only about
   # whether a match was made.
   def match?(expected)
     @lookahead = next_token() if @lookahead.nil?
-    expected == @lookahead.type
+    expected.include?(@lookahead.type)
   end
 
-  # Checks if the lookahead matches expected token; returns
-  # value of token matched, nil if not matched.
+  # Checks if the lookahead matches any of the expected
+  # tokens. Expected tokens are passed in an array.
+  # Returns type of token matched, nil if not matched.
+  #
+  # This method is useful when the specific type of the
+  # token is desirable among several possible matches.
+  def match_type?(expected)
+    @lookahead = next_token if @lookahead.nil?
+    expected.include?(@lookahead.type) ?
+      @lookahead.type : nil
+  end
+
+  # Checks if the lookahead matches any of the expected
+  # tokens. Expected tokens are passed in an array.
+  # Returns value of token matched, nil if not matched.
   #
   # This method is useful when the value of the token is
-  # needed for further processing; successfully matched
-  # values are never nil.
+  # needed for further processing.
   def match_value?(expected)
     @lookahead = next_token() if @lookahead.nil?
-    expected == @lookahead.type ? @lookahead.value : nil
+    expected.include?(@lookahead.type) ?
+      @lookahead.value : nil
   end
 
-  # Advances to the next token, safely ignore return value.
+  # Advances to the next token, safely ignore return value
+  # if not needed.
   def advance
     @lookahead = next_token()
   end

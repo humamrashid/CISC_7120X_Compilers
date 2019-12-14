@@ -36,7 +36,7 @@ class Parser
   def parse(input)
     if input != "\n"
       @lexer = Lexer.new(input)
-      assignments_itr
+      assignments
     end
   end
 
@@ -50,63 +50,55 @@ class Parser
   # symbol table for assignments.
   @@symtab = {}
 
-  def assignments_itr
+  def assignments
     reached_eoi = false
     while !reached_eoi do
-      ident = @lexer.match_value?(Token::IDENTIFIER)
+      ident = @lexer.match_value?([Token::IDENTIFIER])
       raise ParserException,
         'Identifier expected!' if ident.nil?
       @lexer.advance
       raise ParserException,
-        'Equal sign expected!' if !@lexer.match?(Token::EQUAL)
+        'Equal sign expected!'
+          if !@lexer.match?([Token::EQUAL])
       @lexer.advance
       exp_val = expression()
       @@symtab[ident] = exp_val
       raise ParserException,
-        'Semicolon Missing!' if !@lexer.match?(Token::SEMI)
-      puts @@symtab
+        'Semicolon Missing!'
+          if !@lexer.match?([Token::SEMI])
       @lexer.advance
-      reached_eoi = @lexer.match?(Token::EOI)
+      reached_eoi = @lexer.match?([Token::EOI])
+      puts @@symtab
     end
   end
 
   def expression
     temp1 = term()
-    while 
-  end
-
-  def expression_prime
+    add_ops = [Token::PLUS, Token::MINUS]
+    while !(token_type =
+        @lexer.match_type?(add_ops)).nil? do
+      @lexer.advance
+      temp2 = term()
+      temp1 += (token_type == Token::PLUS) ? temp2 : -temp2
+    end
+    temp1
   end
 
   def term
-    fact
-    term_prime
+    temp1 = fact()
+    while !(token_type =
+        @lexer.match_type?(Token::TIMES)).nil? do
+      @lexer.advance
+      temp2 = fact()
+      temp1 *= temp2
+    end
+    temp1
   end
 
   def term_prime
-    if @lexer.match?(Token::TIMES)
-      @lexer.advance
-      fact
-      term_prime
-    end
   end
 
   def fact
-    if @lexer.match?(Token::L_PAREN)
-      @lexer.advance
-      expression
-      if @lexer.match?(Token::R_PAREN)
-        @lexer.advance
-      end
-    elsif @lexer.match?(Token::PLUS) ||
-      @lexer.match?(Token::MINUS)
-      @lexer.advance
-      fact
-    elsif @lexer.match?(Token::INT_LITERAL)
-      @lexer.advance
-    elsif @lexer.match?(Token::IDENTIFIER)
-      @lexer.advance
-    end
   end
 end
 
