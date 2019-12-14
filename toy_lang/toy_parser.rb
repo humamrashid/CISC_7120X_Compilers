@@ -24,7 +24,7 @@
 # Literal       -> 0 | NonZeroDigit Digit*
 # NonZeroDigit  -> 1 | ... | 9
 # Digit         -> 0 | 1 | ... | 9
-
+#
 # In this implementation, some productions are combined
 # together in one method. Right-recursions are also replaced
 # with loops.
@@ -51,7 +51,7 @@ class Parser
 
   protected
 
-  # symbol table for assignments.
+  # Symbol table for assignments.
   @@symtab = {}
 
   # Assignment -> Identifier = Exp;
@@ -109,6 +109,7 @@ class Parser
     temp1
   end
 
+  # Fact -> ( Exp ) | - Fact | + Fact | Literal | Identifier
   def fact
   end
 end
