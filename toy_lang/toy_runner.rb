@@ -33,11 +33,11 @@ elsif ARGV.length == 1
   begin
     lines.each {|l| parser.parse(l) } if f.eof?
   rescue LexerException, ParserException => e
-    puts 'Error: ' + e.to_s
+    abort 'Error: ' + e.to_s
   end
 else
   abort "Usage: #{$PROGRAM_NAME} [program_file]"
 end
-parser.print_vals
+parser.print_values
 
 # EOF.

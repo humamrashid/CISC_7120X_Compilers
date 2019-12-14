@@ -45,7 +45,7 @@ class Parser
   end
 
   # Prints out assignment values in order of entry.
-  def print_vals
+  def print_values
     @@symtab.each {|k,v| puts "#{k} = #{v}"}
   end
 
@@ -137,13 +137,10 @@ class Parser
       raise ParserException,
         'Literal or identifier expected!' if both.nil?
       token_type, token_value = both[0], both[1]
-      if token_type == Token::INT_LITERAL
-        temp1 = token_value
-      else
-        temp1 = @@symtab[token_value]
-        raise ParserException,
-          "#{token_value} is uninitialized!" if temp1.nil?
-      end
+      temp1 = (token_type == Token::INT_LITERAL) ?
+        token_value : @@symtab[token_value]
+      raise ParserException,
+        "#{token_value} is uninitialized!" if temp1.nil?
       @lexer.advance
     end
     temp1
