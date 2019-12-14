@@ -2,8 +2,8 @@
 #
 # Toy Language Runner (running code for parser).
 #
-# Initial design partially based on L. Wrobel's 'Math
-# Parser' and A. Holub's 'Compiler Design in C' chapter 1.
+# Design partially based on L. Wrobel's 'Math Parser' and
+# A. Holub's 'Compiler Design in C' chapter 1.
 #
 # Humam Rashid
 # CISC 7120X, Fall 2019.
