@@ -58,7 +58,7 @@ class Parser
   def assignments
     reached_eoi = false
     while !reached_eoi do
-      ident = @lexer.match_value?([Token::IDENTIFIER])
+      ident = @lexer.match_and_value?([Token::IDENTIFIER])
       raise ParserException,
         'Identifier expected!' if ident.nil?
       @lexer.advance
@@ -85,7 +85,7 @@ class Parser
     temp1 = term()
     add_ops = [Token::PLUS, Token::MINUS]
     while !(token_type =
-        @lexer.match_type?(add_ops)).nil? do
+        @lexer.match_and_type?(add_ops)).nil? do
       @lexer.advance
       temp2 = term()
       temp1 += (token_type == Token::PLUS) ? temp2 : -temp2
@@ -101,7 +101,7 @@ class Parser
     temp1 = fact()
     mult_ops = [Token::TIMES]
     while !(token_type =
-        @lexer.match_type?(mult_ops)).nil? do
+        @lexer.match_and_type?(mult_ops)).nil? do
       @lexer.advance
       temp2 = fact()
       temp1 *= temp2

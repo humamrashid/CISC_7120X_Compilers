@@ -130,10 +130,8 @@ class Lexer
   #
   # This method is useful when the specific type of the
   # token is desirable among several possible matches.
-  def match_type?(expected)
-    @lookahead = next_token if @lookahead.nil?
-    expected.include?(@lookahead.type) ?
-      @lookahead.type : nil
+  def match_and_type?(expected)
+    match?(expected) ? @lookahead.type : nil
   end
 
   # Checks if the lookahead matches any of the expected
@@ -142,10 +140,21 @@ class Lexer
   #
   # This method is useful when the value of the token is
   # needed for further processing.
-  def match_value?(expected)
-    @lookahead = next_token() if @lookahead.nil?
-    expected.include?(@lookahead.type) ?
-      @lookahead.value : nil
+  def match_and_value?(expected)
+    match?(expected) ? @lookahead.value : nil
+  end
+
+  # Checks if the lookahead matches any of the expected
+  # tokens. Expected tokens are passed in an array.
+  # Returns type and value of token matched in an array, nil
+  # if not matched. First return value is type, second is
+  # value.
+  # 
+  # This method is useful when both the type and value of
+  # the token maybe needed for further processing.
+  def match_and_both?(expected)
+    match?(expected) ?
+      [@lookahead.type, @lookahead.value] : nil
   end
 
   # Advances to the next token, safely ignore return value
