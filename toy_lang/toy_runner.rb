@@ -23,17 +23,21 @@ if ARGV.length == 0
         break
       end
       parser.parse(input)
-    rescue StandardError => se
-      puts 'Error: ' + se.to_s
+    rescue StandardError => e
+      puts 'Error: ' + e.to_s
     end
   end
 elsif ARGV.length == 1
   f = File.new(ARGV[0])
   lines = f.readlines
-  lines.each {|l| parser.parse(l) } if f.eof?
+  begin
+    lines.each {|l| parser.parse(l) } if f.eof?
+  rescue LexerException, ParserException => e
+    puts 'Error: ' + e.to_s
+  end
 else
   abort "Usage: #{$PROGRAM_NAME} [program_file]"
 end
-parser.print_vals
+#parser.print_vals
 
 # EOF.

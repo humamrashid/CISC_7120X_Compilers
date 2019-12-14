@@ -58,22 +58,29 @@ class Parser
   def assignment
     reached_eoi = false
     while !reached_eoi do
-      ident = @lexer.match_and_value?([Token::IDENTIFIER])
+      expected = [Token::IDENTIFIER]
+      ident = @lexer.match_and_value?(expected)
       raise ParserException,
         'Identifier expected!' if ident.nil?
       @lexer.advance
+      expected = [Token::EQUAL]
       raise ParserException,
-        'Equal sign expected!'
-          if !@lexer.match?([Token::EQUAL])
+        'Equal sign expected!' if !@lexer.match?(expected)
       @lexer.advance
-      @@symtab[ident] = expression()
+      @@symtab[ident] = expo()
+      expected = [Token::SEMI]
       raise ParserException,
-        'Semicolon Missing!'
-          if !@lexer.match?([Token::SEMI])
+        'Semicolon missing!' if !@lexer.match?(expected)
       @lexer.advance
-      reached_eoi = @lexer.match?([Token::EOI])
+      expected = [Token::EOI]
+      reached_eoi = @lexer.match?(expected)
       puts @@symtab
     end
+  end
+
+  def expo
+    @lexer.advance
+    1
   end
 
   # Exp -> Term ExpPrime
@@ -110,13 +117,14 @@ class Parser
 
   # Fact -> ( Exp ) | - Fact | + Fact | Literal | Identifier
   def fact
+    expected = [Token::L_PAREN]
     add_ops = [Token::PLUS, Token::MINUS]
-    if @lexer.match?([Token::L_PAREN])
+    if @lexer.match?(expected)
       @lexer.advance
       temp1 = expression()
+      expected = [Token::R_PAREN]
       raise ParserException,
-        'Mismatched parenthesis!'
-          if !@lexer.match?([Token::R_PAREN])
+        'Mismatched parenthesis!' if !@lexer.match?(expected)
       @lexer.advance
     elsif !(token_type =
         @lexer.match_and_type?(add_ops)).nil?
@@ -124,8 +132,8 @@ class Parser
       temp2 = fact()
       temp1 += (token_type == Token::PLUS) ? temp2 : -temp2
     else
-      rhs = [Token::INT_LITERAL, Token::IDENTIFIER]
-      both = @lexer.match_and_both?(rhs)
+      expected = [Token::INT_LITERAL, Token::IDENTIFIER]
+      both = @lexer.match_and_both?(expected)
       raise ParserException,
         'Literal or identifier expected!' if both.nil?
       token_type, token_value = both[0], both[1]
@@ -140,7 +148,6 @@ class Parser
     end
     temp1
   end
-
 end
 
 # EOF.
