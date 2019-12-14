@@ -40,7 +40,7 @@ class Parser
   def parse(input)
     if input != "\n"
       @lexer = Lexer.new(input)
-      assignments
+      assignment
     end
   end
 
@@ -55,7 +55,7 @@ class Parser
   @@symtab = {}
 
   # Assignment -> Identifier = Exp;
-  def assignments
+  def assignment
     reached_eoi = false
     while !reached_eoi do
       ident = @lexer.match_and_value?([Token::IDENTIFIER])
@@ -111,7 +111,37 @@ class Parser
 
   # Fact -> ( Exp ) | - Fact | + Fact | Literal | Identifier
   def fact
+    add_ops = [Token::PLUS, Token::MINUS]
+    if @lexer.match?([Token::L_PAREN])
+      @lexer.advance
+      temp1 = expression()
+      raise ParserException,
+        'Mismatched parenthesis!'
+          if !@lexer.match?([Token::R_PAREN])
+      @lexer.advance
+    elsif !(token_type =
+        @lexer.match_and_type?(add_ops)).nil?
+      @lexer.advance
+      temp2 = fact()
+      temp1 += (token_type == Token::PLUS) ? temp2 : -temp2
+    else
+      rhs = [Token::INT_LITERAL, Token::IDENTIFIER]
+      both = @lexer.match_and_both?(rhs)
+      raise ParserException,
+        'Literal or identifier expected!' if both.nil?
+      token_type, token_value = both[0], both[1]
+      if token_type == Token::INT_LITERAL
+        temp1 = token_value
+      else
+        temp1 = @@symtab[token_value]
+        raise ParserException,
+          "#{token_value} is uninitialized!" if temp1.nil?
+      end
+      @lexer.advance
+    end
+    temp1
   end
+
 end
 
 # EOF.
