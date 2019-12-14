@@ -78,11 +78,6 @@ class Parser
     end
   end
 
-  def expo
-    @lexer.advance
-    1
-  end
-
   # Exp -> Term ExpPrime
   # ExpPrime -> e | + Term ExpPrime | - Term ExpPrime
   # The above productions are combined together in this
