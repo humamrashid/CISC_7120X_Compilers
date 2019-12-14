@@ -25,6 +25,10 @@
 # NonZeroDigit  -> 1 | ... | 9
 # Digit         -> 0 | 1 | ... | 9
 
+# In this implementation, some productions are combined
+# together in one method. Right-recursions are also replaced
+# with loops.
+
 require_relative 'toy_lexer'
 
 # Exception type specific to the parser.
@@ -50,6 +54,7 @@ class Parser
   # symbol table for assignments.
   @@symtab = {}
 
+  # Assignment -> Identifier = Exp;
   def assignments
     reached_eoi = false
     while !reached_eoi do
@@ -72,6 +77,10 @@ class Parser
     end
   end
 
+  # Exp -> Term ExpPrime
+  # ExpPrime -> e | + Term ExpPrime | - Term ExpPrime
+  # The above productions are combined together in this
+  # method.
   def expression
     temp1 = term()
     add_ops = [Token::PLUS, Token::MINUS]
@@ -84,6 +93,10 @@ class Parser
     temp1
   end
 
+  # Term -> Fact TermPrime
+  # TermPrime -> e | * Fact TermPrime
+  # The above productions are combined together in this
+  # method.
   def term
     temp1 = fact()
     while !(token_type =
