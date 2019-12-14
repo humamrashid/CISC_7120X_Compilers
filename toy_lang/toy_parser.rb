@@ -83,15 +83,15 @@ class Parser
   # The above productions are combined together in this
   # method.
   def expression
-    temp1 = term()
+    temp = term()
     add_ops = [Token::PLUS, Token::MINUS]
     while !(token_type =
         @lexer.match_and_type?(add_ops)).nil? do
       @lexer.advance
-      temp2 = term()
-      temp1 += (token_type == Token::PLUS) ? temp2 : -temp2
+      temp +=
+        (token_type == Token::PLUS) ? term() : -term()
     end
-    temp1
+    temp
   end
 
   # Term -> Fact TermPrime
@@ -99,15 +99,14 @@ class Parser
   # The above productions are combined together in this
   # method.
   def term
-    temp1 = fact()
+    temp = fact()
     mult_ops = [Token::TIMES]
     while !(token_type =
         @lexer.match_and_type?(mult_ops)).nil? do
       @lexer.advance
-      temp2 = fact()
-      temp1 *= temp2
+      temp *= fact()
     end
-    temp1
+    temp
   end
 
   # Fact -> ( Exp ) | - Fact | + Fact | Literal | Identifier
@@ -116,7 +115,7 @@ class Parser
     add_ops = [Token::PLUS, Token::MINUS]
     if @lexer.match?(expected)
       @lexer.advance
-      temp1 = expression()
+      temp = expression()
       expected = [Token::R_PAREN]
       raise ParserException,
         'Mismatched parenthesis!' if !@lexer.match?(expected)
@@ -124,21 +123,21 @@ class Parser
     elsif !(token_type =
         @lexer.match_and_type?(add_ops)).nil?
       @lexer.advance
-      temp2 = fact()
-      temp1 += (token_type == Token::PLUS) ? temp2 : -temp2
+      temp +=
+        (token_type == Token::PLUS) ? facto() : -facto()
     else
       expected = [Token::INT_LITERAL, Token::IDENTIFIER]
       both = @lexer.match_and_both?(expected)
       raise ParserException,
         'Literal or identifier expected!' if both.nil?
       token_type, token_value = both[0], both[1]
-      temp1 = (token_type == Token::INT_LITERAL) ?
+      temp = (token_type == Token::INT_LITERAL) ?
         token_value : @@symtab[token_value]
       raise ParserException,
-        "#{token_value} is uninitialized!" if temp1.nil?
+        "#{token_value} is uninitialized!" if temp.nil?
       @lexer.advance
     end
-    temp1
+    temp
   end
 end
 
