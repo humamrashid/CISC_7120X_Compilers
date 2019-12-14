@@ -49,6 +49,11 @@ class Parser
     @@symtab.each {|k,v| puts "#{k} = #{v}"}
   end
 
+  # Prints out the last assignment value only.
+  def print_last_value
+    puts @@symtab.values.last
+  end
+
   protected
 
   # Symbol table for assignments.
@@ -74,7 +79,7 @@ class Parser
       @lexer.advance
       expected = [Token::EOI]
       reached_eoi = @lexer.match?(expected)
-      puts @@symtab
+      #puts @@symtab
     end
   end
 
