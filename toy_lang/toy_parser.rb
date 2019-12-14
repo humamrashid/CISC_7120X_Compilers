@@ -99,16 +99,14 @@ class Parser
   # method.
   def term
     temp1 = fact()
+    mult_ops = [Token::TIMES]
     while !(token_type =
-        @lexer.match_type?(Token::TIMES)).nil? do
+        @lexer.match_type?(mult_ops)).nil? do
       @lexer.advance
       temp2 = fact()
       temp1 *= temp2
     end
     temp1
-  end
-
-  def term_prime
   end
 
   def fact
