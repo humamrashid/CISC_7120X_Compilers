@@ -27,7 +27,7 @@
 #
 # In this implementation, some productions are combined
 # together in one method. Right-recursions are also replaced
-# with loops.
+# with loops where appropriate.
 
 require_relative 'toy_lexer'
 
