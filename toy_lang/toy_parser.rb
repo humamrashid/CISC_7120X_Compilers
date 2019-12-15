@@ -80,7 +80,6 @@ class Parser
       @lexer.advance
       expected = [Token::EOI]
       reached_eoi = @lexer.match?(expected)
-      puts @@symtab
     end
   end
 
@@ -129,7 +128,7 @@ class Parser
     elsif !(token_type =
         @lexer.match_and_type?(add_ops)).nil?
       @lexer.advance
-      temp +=
+      temp =
         (token_type == Token::PLUS) ? fact() : -fact()
     else
       expected = [Token::INT_LITERAL, Token::IDENTIFIER]

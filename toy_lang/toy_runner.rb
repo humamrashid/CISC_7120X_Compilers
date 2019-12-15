@@ -25,7 +25,7 @@ if ARGV.length == 0
       parser.parse(input)
       parser.print_last_value
     rescue StandardError => e
-      puts 'Error: ' + e.to_s
+      abort 'Error: ' + e.to_s
     end
   end
 elsif ARGV.length == 1
