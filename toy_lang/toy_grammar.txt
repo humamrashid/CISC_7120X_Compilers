@@ -1,3 +1,6 @@
+# Humam Rashid
+# CISC 7120X, Fall 2019
+#
 # Grammar for toy language with left-recursion removed.
 #
 # Let e = epsilon, then:
