@@ -97,7 +97,7 @@ class Lexer
     when /\A([a-z]|[A-Z]|_)\w*\b/
       token.type = Token::IDENTIFIER
       token.value = $&
-    when /\A0\Z|\A[1-9]\d*\b/
+    when /(\A0\b)|\A[1-9]\d*\b/
       token.type = Token::INT_LITERAL
       token.value = $&.to_i
     end

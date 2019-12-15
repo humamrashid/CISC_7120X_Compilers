@@ -37,6 +37,7 @@ end
 
 # A parser is an instance of class Parser.
 class Parser
+  # Parse input on each line.
   def parse(input)
     if input != "\n"
       @lexer = Lexer.new(input)
@@ -79,7 +80,7 @@ class Parser
       @lexer.advance
       expected = [Token::EOI]
       reached_eoi = @lexer.match?(expected)
-      #puts @@symtab
+      puts @@symtab
     end
   end
 
@@ -129,7 +130,7 @@ class Parser
         @lexer.match_and_type?(add_ops)).nil?
       @lexer.advance
       temp +=
-        (token_type == Token::PLUS) ? facto() : -facto()
+        (token_type == Token::PLUS) ? fact() : -fact()
     else
       expected = [Token::INT_LITERAL, Token::IDENTIFIER]
       both = @lexer.match_and_both?(expected)
