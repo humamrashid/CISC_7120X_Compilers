@@ -1,12 +1,10 @@
 #!/usr/bin/ruby
-#
 # Toy Language Runner (running code for parser).
+# Humam Rashid
+# CISC 7120X, Fall 2019.
 #
 # Design partially based on L. Wrobel's 'Math Parser' and
 # A. Holub's 'Compiler Design in C' chapter 1.
-#
-# Humam Rashid
-# CISC 7120X, Fall 2019.
 
 require_relative 'toy_parser'
 

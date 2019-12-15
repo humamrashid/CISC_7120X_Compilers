@@ -59,14 +59,9 @@ class Lexer
   def initialize(input)
     @input = input
     @lookahead = nil
-    @ret_prev_token = false
   end
 
   def next_token
-    if @ret_prev_token
-      @ret_prev_token = false
-      return @prev_token
-    end
     token = Token.new
     @input.lstrip!
     case @input
@@ -104,12 +99,7 @@ class Lexer
     raise LexerException,
       "unknown token #{@input}" if token.unknown?
     @input = $'
-    @prev_token = token
     token
-  end
-
-  def get_back
-    @ret_prev_token = true
   end
 
   # Checks if the lookahead matches any of the expected
