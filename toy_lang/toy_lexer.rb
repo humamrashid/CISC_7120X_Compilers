@@ -96,8 +96,7 @@ class Lexer
       token.type = Token::INT_LITERAL
       token.value = $&.to_i
     end
-    raise LexerException,
-      "unknown token #{@input}" if token.unknown?
+    raise LexerException, "unknown token #{@input}" if token.unknown?
     @input = $'
     token
   end
@@ -143,8 +142,7 @@ class Lexer
   # This method is useful when both the type and value of
   # the token maybe needed for further processing.
   def match_and_both?(expected)
-    match?(expected) ?
-      [@lookahead.type, @lookahead.value] : nil
+    match?(expected) ? [@lookahead.type, @lookahead.value] : nil
   end
 
   # Advances to the next token, safely ignore return value

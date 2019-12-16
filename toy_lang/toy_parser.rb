@@ -66,17 +66,14 @@ class Parser
     while !reached_eoi do
       expected = [Token::IDENTIFIER]
       ident = @lexer.match_and_value?(expected)
-      raise ParserException,
-        'Identifier expected!' if ident.nil?
+      raise ParserException, 'Identifier expected!' if ident.nil?
       @lexer.advance
       expected = [Token::EQUAL]
-      raise ParserException,
-        'Equal sign expected!' if !@lexer.match?(expected)
+      raise ParserException, 'Equal sign expected!' if !@lexer.match?(expected)
       @lexer.advance
       @@symtab[ident] = expression()
       expected = [Token::SEMI]
-      raise ParserException,
-        'Semicolon missing!' if !@lexer.match?(expected)
+      raise ParserException, 'Semicolon missing!' if !@lexer.match?(expected)
       @lexer.advance
       expected = [Token::EOI]
       reached_eoi = @lexer.match?(expected)
@@ -90,11 +87,9 @@ class Parser
   def expression
     temp = term()
     add_ops = [Token::PLUS, Token::MINUS]
-    while !(token_type =
-        @lexer.match_and_type?(add_ops)).nil? do
+    while !(token_type = @lexer.match_and_type?(add_ops)).nil? do
       @lexer.advance
-      temp +=
-        (token_type == Token::PLUS) ? term() : -term()
+      temp += (token_type == Token::PLUS) ? term() : -term()
     end
     temp
   end
@@ -106,8 +101,7 @@ class Parser
   def term
     temp = fact()
     mult_ops = [Token::TIMES]
-    while !(token_type =
-        @lexer.match_and_type?(mult_ops)).nil? do
+    while !(token_type = @lexer.match_and_type?(mult_ops)).nil? do
       @lexer.advance
       temp *= fact()
     end
@@ -122,24 +116,18 @@ class Parser
       @lexer.advance
       temp = expression()
       expected = [Token::R_PAREN]
-      raise ParserException,
-        'Mismatched parenthesis!' if !@lexer.match?(expected)
+      raise ParserException, 'Mismatched parenthesis!' if !@lexer.match?(expected)
       @lexer.advance
-    elsif !(token_type =
-        @lexer.match_and_type?(add_ops)).nil?
+    elsif !(token_type = @lexer.match_and_type?(add_ops)).nil?
       @lexer.advance
-      temp =
-        (token_type == Token::PLUS) ? fact() : -fact()
+      temp = (token_type == Token::PLUS) ? fact() : -fact()
     else
       expected = [Token::INT_LITERAL, Token::IDENTIFIER]
       both = @lexer.match_and_both?(expected)
-      raise ParserException,
-        'Literal or identifier expected!' if both.nil?
+      raise ParserException, 'Literal or identifier expected!' if both.nil?
       token_type, token_value = both[0], both[1]
-      temp = (token_type == Token::INT_LITERAL) ?
-        token_value : @@symtab[token_value]
-      raise ParserException,
-        "#{token_value} is uninitialized!" if temp.nil?
+      temp = (token_type == Token::INT_LITERAL) ? token_value : @@symtab[token_value]
+      raise ParserException, "#{token_value} is uninitialized!" if temp.nil?
       @lexer.advance
     end
     temp
