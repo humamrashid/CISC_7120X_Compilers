@@ -1,9 +1,6 @@
 #!/usr/bin/ruby
-#
 # Humam Rashid
-# Fall 2019, CISC 7120X
-# Answer to question 3, mid-term exam. This implementation
-# uses regular expressions to determine token count.
+# Counts number of identifiers, integer literals and other things are in a given expression.
 
 def tokens_num2(string)
   ids = lits = others = 0
@@ -19,7 +16,6 @@ def tokens_num2(string)
   end
   [ids, lits, others]
 end
-
 print "Enter a string: "
 puts tokens_num2(gets.chomp).to_s
 
