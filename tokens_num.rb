@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 # Humam Rashid
-# Counts number of identifiers, integer literals and other things are in a given expression.
+# Counts number of identifiers, integer literals and other things in a given expression.
 
 def tokens_num(string)
   [
