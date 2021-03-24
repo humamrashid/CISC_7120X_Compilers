@@ -1,6 +1,0 @@
-	LOAD		X
-	ADDI		1
-	STORE	Y
-	HALT
-VAR	X		10
-VAR	Y		0
